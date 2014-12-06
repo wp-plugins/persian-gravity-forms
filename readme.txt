@@ -58,15 +58,15 @@ You can read complete documentations on the [GravityForms.ir](http://www.Gravity
 
 == Screenshots ==
 
-1. Forms in wordpress dashboard.
-2. Forms list
-3. Adding new form
-4. Fields list
-5. Form setting page
-6. form confirmation actions
-7. form confirmation emails
-8. plugins setting page
-9. entries list
+01. Forms in wordpress dashboard.
+02. Forms list
+03. Adding new form
+04. Fields list
+05. Form setting page
+06. form confirmation actions
+07. form confirmation emails
+08. plugins setting page
+09. entries list
 10. entries detail
 11. coupons
 12. post fields
