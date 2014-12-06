@@ -43,7 +43,7 @@ This plugin extends the Gravity Forms and its addons with Persian language
 
 == Installation ==
 1. Install and Activate Gravity Forms 1.8.x .
-2. Upload `Persian_Gravityforms_By_HANNANStd` folder to the `/wp-content/plugins/` directory
+2. Upload `persian-gravity-forms` folder to the `/wp-content/plugins/` directory
 3. Activate the plugin through the 'Plugins' menu in WordPress
 4. Enjoy It :)
 
