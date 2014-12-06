@@ -75,11 +75,11 @@ You can read complete documentations on the [GravityForms.ir](http://www.Gravity
 15. Iran states
 
 == Changelog ==
-= 1.0 =
+= 1.0.0 =
 * First version
 
 == Upgrade Notice ==
-= 1.0 =
+= 1.0.0 =
 * First version
 
 ==Traducciones ==
