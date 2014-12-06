@@ -65,3 +65,6 @@ font-family:byekan !important;
 .gfur-form-select {
 margin-right:415px !important;
 }
+optgroup {
+font-style:normal !important;
+}
