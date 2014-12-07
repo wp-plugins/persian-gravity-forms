@@ -3,8 +3,8 @@
 Plugin Name: Persian Gravity Forms
 Plugin URI: http://www.gravityforms.ir
 Description: Gravity Forms for Iranian 
-Version: 1.0.1
-Requires at least: 3.0
+Version: 1.0.2
+Requires at least: 3.5
 Author: HANNAN Ebrahimi Setoode
 Author URI: http://www.webforest.ir
 Text Domain: Persian_Gravityforms_By_HANNANStd
