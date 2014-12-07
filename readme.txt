@@ -77,11 +77,15 @@ You can read complete documentations on the [GravityForms.ir](http://www.Gravity
 == Changelog ==
 = 1.0.2 =
 * Fixed : Some Minor bugs
+= 1.0.1 =
+* Fixed : Some Minor bugs
 = 1.0.0 =
 * First version
 
 == Upgrade Notice ==
 = 1.0.2 =
+* Fixed : Some Minor bugs
+= 1.0.1 =
 * Fixed : Some Minor bugs
 = 1.0.0 =
 * First version
