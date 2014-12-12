@@ -16,7 +16,6 @@ class GravityFormsPersian {
 	private $language;
 	private $is_persian;
 	public function __construct( $file ) {
-	require_once(self::get_base_path() . "/include/Jalali.php");
 		$this->file = $file;
 		add_action('init', array( $this, 'init' ), 8 );		
 		add_filter('update_footer', array( $this, 'GravityForms_Footer_Left_By_HANNANStd'), 11); 
