@@ -4,7 +4,7 @@ Tags: gravityforms,gravity forms,persian gravity forms,persian gravityforms,grav
 Donate link: http://www.gravityforms.ir
 Requires at least: 3.5
 Tested up to: 4.0.1
-Stable tag: 1.0.2
+Stable tag: 1.1.0
 License: GPL 2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 This WordPress plugin extends the Gravity Forms plugin and its addons with the Persian language .
@@ -18,6 +18,7 @@ This plugin extends the Gravity Forms and its addons with Persian language
 * Add Iran provinces (states) in Fields , Forms and predefined choice .
 * Add Iranian Rial and Toman Currency .
 * Add Yekan Font to Gravity Forms and make it attractive .
+* Added Iranian National Code Field .
 * Make it RTL .
 * Add Private status option to post status .
 * Add Iranian payment gateways transaction id , transaction status and ... to Merge Tags .
@@ -28,6 +29,7 @@ This plugin extends the Gravity Forms and its addons with Persian language
 * اضافه کردن استان های ایران برای استفاده در فیلد های آدرس و ...
 * اضافه کردن واحد پولی ریال و تومان
 * زیبا سازی محیط کاربری به وسیله استایل دهی و ...
+* اضافه کردن فیلد کد ملی ایران ، این فیلد کد ملی نادرست را برطبق استانداردهای کشور تشخیص داده و از ثبت شدن آن جلوگیری میکند . همچنین این فیلد دارای تنظیمات پیشرفته تری نیز می باشد
 * راستچین سازی افزونه و صفحه پرینت و ادان ها و ...
 * اضافه کردن وضعیت پست خصوصی برای فیلد های ارسال پست .
 * اضافه کردن برچسب وضعیت تراکنش ، کد رهگیری و ... به برچسب های ایمیل و صفحه تاییدیه که این برچسب در خود افزونه وجود نداشت .
@@ -73,8 +75,15 @@ You can read complete documentations on the [GravityForms.ir](http://www.Gravity
 13. front end.
 14. Iran states
 15. Iran states
+16. Iranian National Code field
+17. Iranian National Code field Standard setting
+18. Iranian National Code field in front-end
+19. Iranian National Code field Advanced setting
 
 == Changelog ==
+= 1.1.0 =
+* Fixed : Added Iranian National Code field
+* See Screenshots 16-19
 = 1.0.2 =
 * Fixed : Some Minor bugs
 = 1.0.1 =
@@ -83,6 +92,9 @@ You can read complete documentations on the [GravityForms.ir](http://www.Gravity
 * First version
 
 == Upgrade Notice ==
+= 1.1.0 =
+* Fixed : Added Iranian National Code field
+* See Screenshots 16-19
 = 1.0.2 =
 * Fixed : Some Minor bugs
 = 1.0.1 =
