@@ -82,7 +82,7 @@ You can read complete documentations on the [GravityForms.ir](http://www.Gravity
 
 == Changelog ==
 = 1.1.1 =
-* Fixed : Added Iranian National Code field
+* Added Iranian National Code field
 * See Screenshots 16-19
 = 1.0.2 =
 * Fixed : Some Minor bugs
@@ -93,7 +93,7 @@ You can read complete documentations on the [GravityForms.ir](http://www.Gravity
 
 == Upgrade Notice ==
 = 1.1.1 =
-* Fixed : Added Iranian National Code field
+* Added Iranian National Code field
 * See Screenshots 16-19
 = 1.0.2 =
 * Fixed : Some Minor bugs
