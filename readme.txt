@@ -4,7 +4,7 @@ Tags: gravityforms,gravity forms,persian gravity forms,persian gravityforms,grav
 Donate link: http://www.gravityforms.ir
 Requires at least: 3.5
 Tested up to: 4.0.1
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPL 2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 This WordPress plugin extends the Gravity Forms plugin and its addons with the Persian language .
@@ -34,6 +34,8 @@ This plugin extends the Gravity Forms and its addons with Persian language
 * اضافه کردن وضعیت پست خصوصی برای فیلد های ارسال پست .
 * اضافه کردن برچسب وضعیت تراکنش ، کد رهگیری و ... به برچسب های ایمیل و صفحه تاییدیه که این برچسب در خود افزونه وجود نداشت .
 * افزونه درگاه های ایرانی آن نیز به صورت جدا عرضه خواهد شد ....
+* قرار دادن کد رهگیری برای تمامی فرم ها
+* رسم نمودار شمسی برای درگاه های پرداخت
 * ....
 
 = Compatibility =
@@ -81,6 +83,14 @@ You can read complete documentations on the [GravityForms.ir](http://www.Gravity
 19. Iranian National Code field Advanced setting
 
 == Changelog ==
+= 1.1.2 =
+* Added transaction id for all forms
+* Added rtl merge tags for emails
+* Support custom page for callback url
+* Fixed some css bugs
+* Added wp_session class for more security
+* Added Jquery flot for transaction graph
+* Added Jalali Class for transaction graph
 = 1.1.1 =
 * Added Iranian National Code field
 * See Screenshots 16-19
@@ -92,6 +102,14 @@ You can read complete documentations on the [GravityForms.ir](http://www.Gravity
 * First version
 
 == Upgrade Notice ==
+= 1.1.2 =
+* Added transaction id for all forms
+* Added rtl merge tags for emails
+* Support custom page for callback url
+* Fixed some css bugs
+* Added wp_session class for more security
+* Added Jquery flot for transaction graph
+* Added Jalali Class for transaction graph
 = 1.1.1 =
 * Added Iranian National Code field
 * See Screenshots 16-19

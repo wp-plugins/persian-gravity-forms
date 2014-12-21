@@ -3,7 +3,7 @@
 Plugin Name: Persian Gravity Forms
 Plugin URI: https://wordpress.org/plugins/persian-gravity-forms/
 Description: Gravity Forms for Iranian 
-Version: 1.1.1
+Version: 1.1.2
 Requires at least: 3.5
 Author: HANNAN Ebrahimi Setoode
 Author URI: http://www.gravityforms.ir/
@@ -17,6 +17,8 @@ class GravityFormsPersian {
 	private $is_persian;
 	public function __construct( $file ) {
 	require_once(self::get_base_path() . "/include/Jalali.php");
+	require_once(self::get_base_path() . "/include/wp-session.php");
+	require_once(self::get_base_path() . "/include/Post_Content_Merge_Tags.php");
 		$this->file = $file;
 		add_action('init', array( $this, 'init' ), 8 );		
 		add_filter('update_footer', array( $this, 'GravityForms_Footer_Left_By_HANNANStd'), 11); 
@@ -26,9 +28,7 @@ class GravityFormsPersian {
 		add_filter('gform_address_types', array( $this, 'Gform_IRAN_By_HANNANStd' ) );
 		add_action('activated_plugin', array( $this, 'Activated_Plugin_By_HANNANStd' ) );
 		add_action('gform_admin_pre_render', array( $this, 'Add_Merge_Tags_To_List_By_HANNANStd'));
-		add_filter('gform_replace_merge_tags', array( $this, 'GformReplaceMergeTags_CSS_By_HANNANStd'), 10, 7);
-		add_filter('gform_replace_merge_tags', array( $this, 'GformReplaceMergeTags_Simple_By_HANNANStd'), 10, 7);
-		add_filter('gform_replace_merge_tags', array( $this, 'GformReplaceMergeTags_Pack_By_HANNANStd'), 10, 7);
+		add_filter('gform_replace_merge_tags', array( $this, 'GformReplaceMergeTags_By_HANNANStd'), 10, 7);
 		add_action('wp_dashboard_setup', array( $this, 'Persian_GravityForms_Dashboard_By_HANNANStd'));
         add_filter('gform_print_styles', array( $this, 'Add_Styles_Print_By_HANNANStd'), 10, 2);
         add_action('admin_print_scripts', array( $this, 'GravityForms_Admin_CSS_By_HANNANStd' ));
@@ -44,7 +44,9 @@ class GravityFormsPersian {
 		add_filter('gform_editor_js_set_default_values', array( $this, 'Add_Melli_Cart_Field_Label_By_HANNANStd'));
 		add_filter('gform_field_content', array( $this, 'Add_Melli_Cart_Field_JavaScript_Checker_By_HANNANStd'), 10, 5);
 		add_action('gform_field_advanced_settings', array( $this, 'Add_Melli_Cart_Field_Setting_By_HANNANStd'), 10, 2);
-		add_filter('gform_field_validation', array( $this, 'Add_Melli_Cart_Field_PHP_Checker_Massage_By_HANNANStd'), 10, 4);		
+		add_filter('gform_field_validation', array( $this, 'Add_Melli_Cart_Field_PHP_Checker_Massage_By_HANNANStd'), 10, 4);	
+		add_action('gform_entries_first_column', array($this ,'First_Column_Actions_By_HANNANStd'), 10, 5);	
+		add_action('gform_entry_post_save', array($this ,'Update_Lead_No_Gateway_By_HANNANStd'), 10, 2);
 		}
         public function Activated_Plugin_By_HANNANStd() {
 		$path = str_replace( WP_PLUGIN_DIR . '/', '', $this->file );
@@ -315,11 +317,60 @@ class GravityFormsPersian {
 		mergeTags["custom"].tags.push({ tag: '{payment_status_css}', label: '<?php _e("Styled Payment Status", "Persian_Gravityforms_By_HANNANStd") ?>' });
 		mergeTags["custom"].tags.push({ tag: '{transaction_id_css}', label: '<?php _e("Styled Transaction ID", "Persian_Gravityforms_By_HANNANStd") ?>' });
 		mergeTags["custom"].tags.push({ tag: '{payment_pack}', label: '<?php _e("Styled Payment Pack", "Persian_Gravityforms_By_HANNANStd") ?>' });
+		mergeTags["custom"].tags.push({ tag: '{rtl_start}', label: '<?php _e("RTL Start", "Persian_Gravityforms_By_HANNANStd") ?>' });
+		mergeTags["custom"].tags.push({ tag: '{rtl_end}', label: '<?php _e("RTL End", "Persian_Gravityforms_By_HANNANStd") ?>' });
 		return mergeTags;}
 	</script>
 	<?php return $form; }
-	public function GformReplaceMergeTags_Simple_By_HANNANStd($text, $form, $lead, $url_encode, $esc_html, $nl2br, $format){
-	$price = $lead['payment_amount'];
+	function First_Column_Actions_By_HANNANStd($form_id, $field_id, $value, $lead, $query_string) {
+	$url = get_bloginfo("wpurl") . "/wp-admin/admin.php?page=gf_entries&view=entries&id=" . $form_id;
+	$gateway = gform_get_meta($lead["id"], "payment_gateway");
+	if($lead["payment_status"] == 'Active') {
+	$color = '#008000';
+	$stat = "موفق";
+	}
+	if($lead["payment_status"] == 'Paid') {
+	$color = '#008000';
+	$stat = "موفق";
+	}
+	if($lead["payment_status"] == 'Failed') {
+	$color = '#FF0000';
+	$stat = "ناموفق";
+	}
+	if($lead["payment_status"] == 'Cancelled') {
+	$color = '#FFA500';
+	$stat = "منصرف شده";
+	}
+	if($lead["payment_status"] == 'Processing') {
+	$color = '#3399FF';
+	$stat = "معلق";
+	}	
+	if ($gateway)
+	echo '<a  class="stat" href="'.$url.'&sort=0&dir=DESC&s=Processing&field_id=payment_status&operator=is" style="color:'.$color.';"> '.$stat.' </a> - <a class="stat" href="'.$url.'&sort=0&dir=DESC&s='.$gateway.'&field_id=payment_gateway&operator=is" style="color:#000000;"> '.$gateway.' </a>';
+	else if ($lead["payment_status"])
+	echo '<a  class="stat" href="'.$url.'&sort=0&dir=DESC&s=Processing&field_id=payment_status&operator=is" style="color:'.$color.';"> موفق </a>';
+	}
+	public function Update_Lead_No_Gateway_By_HANNANStd($lead, $form) {
+	$gateway = gform_get_meta($lead['id'], 'payment_gateway');
+	$method = $lead['payment_method'];
+	$product = self::get_product_price($form, $lead);
+	if (!isset($method) && !$gateway && !isset($lead["transaction_id"]) ) {
+	$lead["transaction_id"] = rand(100000000000000,999999999999999);
+	$lead["is_fulfilled"] = 0;
+	}
+	if ( ($product["yes"]==2) && !isset($method) && !$gateway ) {
+	$lead["payment_amount"] = $product["total"];
+	$lead["payment_date"] = gmdate('Y-m-d H:i:s');
+    $lead["is_fulfilled"] = 1;
+	$lead["payment_status"] = 'Paid';
+	}
+	$wp_session = WP_Session::get_instance();
+	wp_session_unset();
+	$wp_session['refid'] = $lead["transaction_id"];
+    RGFormsModel::update_lead($lead);
+	return $lead;
+	}
+	public function GformReplaceMergeTags_By_HANNANStd($text, $form, $lead, $url_encode, $esc_html, $nl2br, $format){
 	$gateway = gform_get_meta($lead['id'], 'payment_gateway');
 	if ($lead['payment_status']=="Active" || $lead['payment_status']=="Paid")
 	$payment_status = __("Paid", "Persian_Gravityforms_By_HANNANStd");
@@ -331,113 +382,63 @@ class GravityFormsPersian {
 		'{payment_gateway}',
 		'{transaction_id}',
 		'{payment_status}',
-	);
-	if ( ( $price < 0 ) || !isset($price) || !isset($gateway) ) {
-	$values = array (
-		'',
-		'',
-		'',
-	);} 
-	else {
-	$values = array (
-        isset($gateway) ? $gateway : '',			
-        isset($lead['transaction_id']) ? $lead['transaction_id'] : '',
-		isset($lead['payment_status']) ? $payment_status : '',	
-	);
-	}
-	$text = str_replace($tags, $values, $text);
-	return $text;
-	}
-	public function GformReplaceMergeTags_CSS_By_HANNANStd($text, $form, $lead, $url_encode, $esc_html, $nl2br, $format){
-	$price = $lead['payment_amount'];
-    $gateway = gform_get_meta($lead['id'], 'payment_gateway');
-	if ($lead['payment_status']=="Active" || $lead['payment_status']=="Paid")
-	$payment_status = __("Paid", "Persian_Gravityforms_By_HANNANStd");
-	if ($lead['payment_status']=="Failed")
-	$payment_status = __("Failed", "Persian_Gravityforms_By_HANNANStd");
-	if ($lead['payment_status']=="Cancelled")
-	$payment_status = __("Cancelled", "Persian_Gravityforms_By_HANNANStd");
-	$tags = array (
 		'{payment_gateway_css}',
 		'{transaction_id_css}',
 		'{payment_status_css}',
-	);
-	if ( ( $price < 0 ) || !isset($price) || !isset($gateway)  ) {
-	$values = array (
-		'',
-		'',
-		'',
-	);}
-	else {
-	$values = array (
-	isset($gateway) ? '<table width="99%" border="0" cellpadding="1" cellspacing="0" bgcolor="#EAEAEA" style="border:1px solid #e9e9e9!important;">
-	<tr bgcolor="#EAF2FA">
-	<td colspan="2" style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px"><strong>'.__( 'Payment Gateway', 'Persian_Gravityforms_By_HANNANStd' ).'</strong></font></td>
-	</tr>
-	<tr bgcolor="#FFFFFF">
-	<td  style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px">'.$gateway.'</font></td>
-	</tr></table>' : '',
-	isset($lead['transaction_id']) ? '<table width="99%" border="0" cellpadding="1" cellspacing="0" bgcolor="#EAEAEA" style="border:1px solid #e9e9e9!important;">
-	<tr bgcolor="#EAF2FA">
-	<td colspan="2" style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px">
-	<strong>'.__( 'Transaction ID', 'Persian_Gravityforms_By_HANNANStd' ).'</strong></font></td>
-	</tr>
-	<tr bgcolor="#FFFFFF">
-	<td  style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px">'.$lead['transaction_id'].'</font></td></tr>
-	</table>' : '',
-	isset($lead['payment_status']) ? '<table width="99%" border="0" cellpadding="1" cellspacing="0" bgcolor="#EAEAEA" style="border:1px solid #e9e9e9!important;"><tr bgcolor="#EAF2FA">
-	<td colspan="2" style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px"><strong>'.__( 'Payment Status', 'Persian_Gravityforms_By_HANNANStd' ).'</strong></font></td>
-	</tr>
-	<tr bgcolor="#FFFFFF">
-	<td  style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px">'.$payment_status.'</font></td></tr>
-	</table>' : '',
-	);
-	}
-	$text = str_replace($tags, $values, $text);
-	return $text;
-	}
-	function GformReplaceMergeTags_Pack_By_HANNANStd($text, $form, $lead, $url_encode, $esc_html, $nl2br, $format){
-    $price = $lead['payment_amount'];
-    $gateway = gform_get_meta($lead['id'], 'payment_gateway');
-	if ($lead['payment_status']=="Active" || $lead['payment_status']=="Paid")
-	$payment_status = __("Paid", "Persian_Gravityforms_By_HANNANStd");
-	if ($lead['payment_status']=="Failed")
-	$payment_status = __("Failed", "Persian_Gravityforms_By_HANNANStd");
-	if ($lead['payment_status']=="Cancelled")
-	$payment_status = __("Cancelled", "Persian_Gravityforms_By_HANNANStd");
-	$tags = array (
 		'{payment_pack}',
-	); 
-	if ( ( $price < 0 ) || !isset($price) || !isset($gateway) ) {
-	$values = array (
-		'',
-	);}
-	else {
-	$values = array (
-	(isset($lead['transaction_id']) && isset($gateway) && isset($lead['payment_status']) ) ? '<table width="99%" border="0" cellpadding="1" cellspacing="0" bgcolor="#EAEAEA" style="border:1px solid #e9e9e9!important;">
-	<tr>
-	<td style="font-size:14px;font-weight:bold;background-color:#eee;border-bottom:1px solid #dfdfdf;padding:7px 7px" colspan="2">'.__( 'Payment Information', 'Persian_Gravityforms_By_HANNANStd' ).'</td>
-	</tr>
-	<tr bgcolor="#EAF2FA">
-	<td colspan="2" style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px"><strong>'.__( 'Payment Gateway', 'Persian_Gravityforms_By_HANNANStd' ).'</strong></font></td>
-	</tr>
-	<tr bgcolor="#FFFFFF">
-	<td  style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px">'.$gateway.'</font></td>
-	</tr>
-	<tr bgcolor="#EAF2FA">
-	<td colspan="2" style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px"><strong>'.__( 'Payment Status', 'Persian_Gravityforms_By_HANNANStd' ).'</strong></font></td>
-	</tr>
-	<tr bgcolor="#FFFFFF">
-	<td  style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px">'.$payment_status.'</font></td>
-	</tr>
-	<tr bgcolor="#EAF2FA">
-	<td colspan="2" style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px"><strong>'.__( 'Transaction ID', 'Persian_Gravityforms_By_HANNANStd' ).'</strong></font></td>
-	</tr>
-	<tr bgcolor="#FFFFFF">
-	<td  style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px">'.$lead['transaction_id'].'</font></td></tr>
-	</table>' : '',			
+		'{rtl_start}',
+		'{rtl_end}',
 	);
-	}
+	$values = array (
+        $gateway ? $gateway : '',			
+        isset($lead['transaction_id']) ? $lead['transaction_id'] : '',
+		isset($lead['payment_status']) ? $payment_status : '',	
+		$gateway ? '<table width="99%" border="0" cellpadding="1" cellspacing="0" bgcolor="#EAEAEA" style="border:1px solid #e9e9e9!important;">
+		<tr bgcolor="#EAF2FA">
+		<td colspan="2" style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px"><strong>'.__( 'Payment Gateway', 'Persian_Gravityforms_By_HANNANStd' ).'</strong></font></td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+		<td  style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px">'.$gateway.'</font></td>
+		</tr></table>' : '',
+		isset($lead['transaction_id']) ? '<table width="99%" border="0" cellpadding="1" cellspacing="0" bgcolor="#EAEAEA" style="border:1px solid #e9e9e9!important;">
+		<tr bgcolor="#EAF2FA">
+		<td colspan="2" style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px">
+		<strong>'.__( 'Transaction ID', 'Persian_Gravityforms_By_HANNANStd' ).'</strong></font></td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+		<td  style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px">'.$lead['transaction_id'].'</font></td></tr>
+		</table>' : '',
+		isset($lead['payment_status']) ? '<table width="99%" border="0" cellpadding="1" cellspacing="0" bgcolor="#EAEAEA" style="border:1px solid #e9e9e9!important;"><tr bgcolor="#EAF2FA">
+		<td colspan="2" style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px"><strong>'.__( 'Payment Status', 'Persian_Gravityforms_By_HANNANStd' ).'</strong></font></td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+		<td  style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px">'.$payment_status.'</font></td></tr>
+		</table>' : '',
+		(isset($lead['transaction_id']) && $gateway && isset($lead['payment_status']) ) ? '<table width="99%" border="0" cellpadding="1" cellspacing="0" bgcolor="#EAEAEA" style="border:1px solid #e9e9e9!important;">
+		<tr>
+		<td style="font-size:14px;font-weight:bold;background-color:#eee;border-bottom:1px solid #dfdfdf;padding:7px 7px" colspan="2">'.__( 'Payment Information', 'Persian_Gravityforms_By_HANNANStd' ).'</td>
+		</tr>
+		<tr bgcolor="#EAF2FA">
+		<td colspan="2" style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px"><strong>'.__( 'Payment Gateway', 'Persian_Gravityforms_By_HANNANStd' ).'</strong></font></td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+		<td  style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px">'.$gateway.'</font></td>
+		</tr>
+		<tr bgcolor="#EAF2FA">
+		<td colspan="2" style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px"><strong>'.__( 'Payment Status', 'Persian_Gravityforms_By_HANNANStd' ).'</strong></font></td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+		<td  style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px">'.$payment_status.'</font></td>
+		</tr>
+		<tr bgcolor="#EAF2FA">
+		<td colspan="2" style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px"><strong>'.__( 'Transaction ID', 'Persian_Gravityforms_By_HANNANStd' ).'</strong></font></td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+		<td  style="padding:5px !important"><font style="font-family:sans-serif;font-size:12px">'.$lead['transaction_id'].'</font></td></tr>
+		</table>' : '',	
+		'<div style="text-align: right !important; direction: rtl !important;">',
+		'</div>',
+	);
 	$text = str_replace($tags, $values, $text);
 	return $text;
 	}
@@ -526,6 +527,80 @@ echo "</ul>";
 $rss->__destruct();
 unset($rss);
 }
+public static function get_product_price($form, $entry){
+$currency = GFCommon::get_currency();
+        $products = GFCommon::get_product_fields($form, $entry, true);
+        $product_index = 1;
+        $total = 0;
+        $discount = 0;
+        foreach($products["products"] as $product){
+            $option_fields = "";
+            $price = GFCommon::to_number($product["price"]);
+            if(is_array(rgar($product,"options"))){
+                $option_index = 1;
+                foreach($product["options"] as $option){
+                    $field_label = urlencode($option["field_label"]);
+                    $option_name = urlencode($option["option_name"]);
+                    $option_fields .= "&on{$option_index}_{$product_index}={$field_label}&os{$option_index}_{$product_index}={$option_name}";
+                    $price += GFCommon::to_number($option["price"]);
+                    $option_index++;	
+                }
+            }
+            $name = urlencode($product["name"]);
+            if($price > 0)
+            {
+                $total += $price * $product['quantity'];
+                $product_index++;
+            }
+            else{
+                $discount += abs($price) * $product['quantity'];
+            }
+        }
+		if($price) $yes = 2;
+					else $yes = 1;
+        if(!empty($products["shipping"]["price"])) {
+        $total += floatval($products["shipping"]["price"]);
+		}
+		if($discount > 0){
+		    if($discount < $total) {
+		    $total = $total-$discount;
+			}
+			else {
+			$total = 0;
+			}
+		}
+		else {
+		$total = $total;
+		}		
+return array("total" => $total, "yes" => $yes);
+} 
+public static function get_mysql_tz_offset(){
+$tz = get_option('gmt_offset'); 
+	if ( intval($tz) < 0) $pf = "-";
+	else $pf = "+";
+	$tz = abs($tz) * 3600;
+	$tz = gmdate("H:i", $tz);
+	$tz = $pf.$tz;
+        $today = date('Y-m-d H:i:s');
+	$date = new DateTime($today);
+	$tzb = get_option('gmt_offset'); 
+	$tzn = abs($tzb) * 3600;
+	$tzh = intval(gmdate("H", $tzn));
+	$tzm = intval(gmdate("i", $tzn));
+	if ( intval($tzb) < 0) {
+	$date->sub(new DateInterval('P0DT'.$tzh.'H'.$tzm.'M'));
+	}else {
+	$date->add(new DateInterval('P0DT'.$tzh.'H'.$tzm.'M'));}
+	$today = $date->format('Y-m-d H:i:s');
+        $today = strtotime ($today);
+        return array("tz" => $tz, "today" => $today);
+}
+public static function get_base_url(){
+return plugins_url( '', __FILE__ );
+}
+public function version(){
+return '1.1.2';
+}
 public function Add_Melli_Cart_Field_By_HANNANStd( $field_groups ) {
 foreach( $field_groups as &$group ){
 if( $group["name"] == "advanced_fields" ){
@@ -581,8 +656,8 @@ return $input;
 public function Add_Melli_Cart_Field_Setting_By_HANNANStd( $position, $form_id ){
 if( $position == 50 ){
 ?>
-<hr/>
 <li class="mellicart_setting field_setting">
+<hr/>
 <input type="checkbox" id="field_mellicart" onclick="SetFieldProperty('field_mellicart', this.checked);" />
 <label for="field_mellicart" class="inline">
 <?php _e("نمایش زیر نویس فیلد", "gravityforms"); ?>
@@ -628,8 +703,8 @@ if( $position == 50 ){
 </label>
 <br/>
 <input type="text" id="field_mellicart_sp4" size="35" onkeyup="SetFieldProperty('field_mellicart_sp4', this.value);" />
-</li>
 <hr/>
+</li>
 <?php
 }
 }

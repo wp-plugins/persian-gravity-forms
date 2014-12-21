@@ -68,3 +68,10 @@ margin-right:415px !important;
 optgroup {
 font-style:normal !important;
 }
+.choice_with_value_and_price label {
+margin: 0 60px 0 0 !important;
+padding-left: 26px !important;
+}
+.choice_with_price .gfield_choice_header_label ,.choice_with_value .gfield_choice_header_label {
+margin: 0 69px 0 99px !important;
+}
