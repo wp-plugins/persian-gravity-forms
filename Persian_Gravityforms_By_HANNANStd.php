@@ -3,7 +3,7 @@
 Plugin Name: Persian Gravity Forms
 Plugin URI: https://wordpress.org/plugins/persian-gravity-forms/
 Description: Gravity Forms for Iranian 
-Version: 1.1.2
+Version: 1.1.3
 Requires at least: 3.5
 Author: HANNAN Ebrahimi Setoode
 Author URI: http://www.gravityforms.ir/
@@ -16,9 +16,6 @@ class GravityFormsPersian {
 	private $language;
 	private $is_persian;
 	public function __construct( $file ) {
-	require_once(self::get_base_path() . "/include/Jalali.php");
-	require_once(self::get_base_path() . "/include/wp-session.php");
-	require_once(self::get_base_path() . "/include/Post_Content_Merge_Tags.php");
 		$this->file = $file;
 		add_action('init', array( $this, 'init' ), 8 );		
 		add_filter('update_footer', array( $this, 'GravityForms_Footer_Left_By_HANNANStd'), 11); 
@@ -66,6 +63,9 @@ class GravityFormsPersian {
 		}
 	}
 	public function init(){
+        require_once("include/wp-session.php");
+        require_once("include/Jalali.php");
+        require_once("include/Post_Content_Merge_Tags.php");
 		$rel_path = dirname( plugin_basename( $this->file ) ) . '/languages/';
 		if ( $this->language == null ) {
 			$this->language = get_option( 'WPLANG', WPLANG );
@@ -366,7 +366,7 @@ class GravityFormsPersian {
 	}
 	$wp_session = WP_Session::get_instance();
 	wp_session_unset();
-	$wp_session['refid'] = $lead["transaction_id"];
+	$wp_session['refid'] = $form["id"].$lead["id"];
     RGFormsModel::update_lead($lead);
 	return $lead;
 	}
@@ -599,7 +599,7 @@ public static function get_base_url(){
 return plugins_url( '', __FILE__ );
 }
 public function version(){
-return '1.1.2';
+return '1.1.3';
 }
 public function Add_Melli_Cart_Field_By_HANNANStd( $field_groups ) {
 foreach( $field_groups as &$group ){

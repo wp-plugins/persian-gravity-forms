@@ -44,7 +44,7 @@ class PersianGravityForms_Post_Content_Merge_Tags {
 		$wp_session = WP_Session::get_instance();
         $post_content = $this->replace_field_label_merge_tags( $post_content, $form );
         $post_content = GFCommon::replace_variables( $post_content, $form, $entry, false, false, false );
-		if ( $wp_session['refid'] == $entry["transaction_id"] ) {
+		if ( $wp_session['refid'] == $form["id"].$entry["id"] ) {
         return $post_content;
 		} else {
 		unset($post_content);
