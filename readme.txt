@@ -3,7 +3,7 @@ Contributors: hannanstd
 Tags: gravityforms,gravity forms,persian gravity forms,persian gravityforms,gravityforms farsi,gravity forms farsi,rtl,fa_ir,iranian,iranian rials,iranian toman,iran state,gravityforms.ir,gravity forms payment,gravity forms gateway,gravity forms iran gateways
 Donate link: http://www.gravityforms.ir
 Requires at least: 3.5
-Tested up to: 4.0.1
+Tested up to: 4.1
 Stable tag: 1.1.3
 License: GPL 2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
