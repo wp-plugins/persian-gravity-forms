@@ -37,20 +37,16 @@ class PersianGravityForms_Post_Content_Merge_Tags {
         }
     }
     function replace_merge_tags( $post_content ) {
-        $entry = $this->get_entry();
-        if( ! $entry )
-            return $post_content;
-        $form = GFFormsModel::get_form_meta( $entry['form_id'] );
 		$wp_session = WP_Session::get_instance();
+        $entry = $this->get_entry();
+        if( !$entry )
+        return $post_content;
+        $form = GFFormsModel::get_form_meta( $entry['form_id'] );
+		if ( $wp_session['refid'] == $form["id"].$entry["id"] ) {
         $post_content = $this->replace_field_label_merge_tags( $post_content, $form );
         $post_content = GFCommon::replace_variables( $post_content, $form, $entry, false, false, false );
-		if ( $wp_session['refid'] == $form["id"].$entry["id"] ) {
-        return $post_content;
-		} else {
-		unset($post_content);
-		$post_content = "این تراکنش قبلا به پایان رسیده بود و نتیجه آن نیز اعلام شده بود . بنا به دلایل امنیتی از بازگو کردن وضعیت آن به شما معذوریم .";	
+		} 
 		return $post_content;
-		}
     }
     function replace_field_label_merge_tags( $text, $form ) {
         preg_match_all( '/{([^:]+?)}/', $text, $matches, PREG_SET_ORDER );
