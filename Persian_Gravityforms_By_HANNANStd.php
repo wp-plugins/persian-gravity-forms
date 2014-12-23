@@ -3,7 +3,7 @@
 Plugin Name: Persian Gravity Forms
 Plugin URI: https://wordpress.org/plugins/persian-gravity-forms/
 Description: Gravity Forms for Iranian 
-Version: 1.1.3
+Version: 1.1.4
 Requires at least: 3.5
 Author: HANNAN Ebrahimi Setoode
 Author URI: http://www.gravityforms.ir/
@@ -11,6 +11,7 @@ Text Domain: Persian_Gravityforms_By_HANNANStd
 Domain Path: /languages/
 License: GPL 2
 */
+require_once("include/wp-session.php");
 class GravityFormsPersian {
 	private $file;
 	private $language;
@@ -63,7 +64,6 @@ class GravityFormsPersian {
 		}
 	}
 	public function init(){
-        require_once("include/wp-session.php");
         require_once("include/Jalali.php");
         require_once("include/Post_Content_Merge_Tags.php");
 		$rel_path = dirname( plugin_basename( $this->file ) ) . '/languages/';
@@ -599,7 +599,7 @@ public static function get_base_url(){
 return plugins_url( '', __FILE__ );
 }
 public function version(){
-return '1.1.3';
+return '1.1.4';
 }
 public function Add_Melli_Cart_Field_By_HANNANStd( $field_groups ) {
 foreach( $field_groups as &$group ){
