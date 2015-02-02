@@ -3,7 +3,7 @@
 Plugin Name: Persian Gravity Forms
 Plugin URI: https://wordpress.org/plugins/persian-gravity-forms/
 Description: Gravity Forms for Iranian 
-Version: 1.2.0
+Version: 1.3.0
 Requires at least: 3.5
 Author: HANNAN Ebrahimi Setoode
 Author URI: http://www.gravityforms.ir/
@@ -41,7 +41,8 @@ class GravityFormsPersian {
 		add_filter('gform_address_types', array( $this, 'Gform_IRAN_By_HANNANStd' ) );
 		add_filter('gform_replace_merge_tags', array( $this, 'GformReplaceMergeTags_By_HANNANStd'), 10, 7);
         add_filter('gform_print_styles', array( $this, 'Add_Styles_Print_By_HANNANStd'), 10, 2);
-        add_filter('gform_predefined_choices', array( $this, 'Add_Iran_Predefined_Choice_By_HANNANStd' ),1);		
+        add_filter('gform_predefined_choices', array( $this, 'Add_Iran_States_Predefined_Choice_By_HANNANStd' ),1);	
+        add_filter('gform_predefined_choices', array( $this, 'Add_Iran_Months_Predefined_Choice_By_HANNANStd' ),1);		
 		add_filter('gform_tooltips', array( $this, 'Add_Encryption_tooltips_By_HANNANStd'));
 		add_filter('gform_add_field_buttons', array( $this, 'Add_Melli_Cart_Field_By_HANNANStd'));
 		add_filter('gform_field_type_title', array( $this,'Add_Melli_Cart_Field_Title_By_HANNANStd'));
@@ -90,9 +91,10 @@ class GravityFormsPersian {
 	
 	public function Load_Textdomain_Mo_File_By_HANNANStd( $mo_file, $domain ) {
 		if ( strpos( $mo_file, 'fa_IR.mo' ) !== false ) {
+			
 			$domains = array(
 				'gravityforms'                 => array(
-					'languages/gravityforms-fa_IR.mo'                 => 'gravityforms/fa_IR.mo'
+					'languages/gravityforms-fa_IR.mo'                 => 'gravityforms1.8/fa_IR.mo'
 				),
 				'gravityformscoupons'  => array(
 					'languages/gravityformscoupons-fa_IR.mo'  => 'gravityformscoupons/fa_IR.mo'
@@ -144,6 +146,9 @@ class GravityFormsPersian {
 				),
 				'gravityformszapier'        => array(
 					'languages/gravityformszapier-fa_IR.mo'        => 'gravityformszapier/fa_IR.mo'
+				),
+				'sticky-list'        => array(
+					'languages/sticky-list-fa_IR.mo'        => 'gravityformsstickylist/fa_IR.mo'
 				)
 			);
 			if ( isset( $domains[$domain] ) ) {
@@ -167,7 +172,7 @@ class GravityFormsPersian {
 			<li class="Jalali_setting field_setting">
 				<input type="checkbox" id="check_jalali" onclick="SetFieldProperty('check_jalali', jQuery(this).is(':checked') ? 1 : 0);"/> 
 				<label class="inline gfield_value_label" for="field_admin_label">
-				<?php _e( 'Yes', 'Persian_Gravityforms_By_HANNANStd' ); ?>
+				<?php _e( 'بله', 'Persian_Gravityforms_By_HANNANStd' ); ?>
 				<?php gform_tooltip("form_check_jalali") ?>
 				</label>
 			</li>
@@ -209,13 +214,13 @@ class GravityFormsPersian {
 		foreach ( $form['fields'] as $field ) {
 			if ( ( $field['type'] == 'date' ) ) {
 				if(rgget("check_jalali", $field)){
-					add_filter('gform_date_min_year', array( $this, 'Set_Min_Year_By_HANNANStd' ) );
-					add_filter('gform_date_max_year', array( $this, 'Set_Max_Year_By_HANNANStd' ) );
+					//add_filter('gform_date_min_year', array( $this, 'Set_Min_Year_By_HANNANStd' ) );
+					//add_filter('gform_date_max_year', array( $this, 'Set_Max_Year_By_HANNANStd' ) );
 					if (!IS_ADMIN)
 					{
 						wp_deregister_script('gform_datepicker_init');
 						wp_deregister_script('jquery-ui-datepicker');
-						wp_register_script('gform_datepicker_init',plugins_url ( '/assets/js/Datepicker.js', __FILE__), array( 'jquery', 'jquery-ui-core' ), GFCommon::$version, true );
+						wp_register_script('gform_datepicker_init',plugins_url ( '/assets/js/date-picker.js', __FILE__), array( 'jquery', 'jquery-ui-core' ), GFCommon::$version, true );
 					}
 				}
 			}
@@ -229,7 +234,7 @@ class GravityFormsPersian {
 	
 	public function Set_Max_Year_By_HANNANStd($max_year){
 		$max_year = GF_gregorian_to_jalali($max_year,03,21);
-		return $max_year[0]+10;
+		return $max_year[0]+20;
 	}
 	
     public function GravityForms_Footer_Left_By_HANNANStd($text) {
@@ -237,91 +242,108 @@ class GravityFormsPersian {
 	}
 	
     public function Add_Private_Post_Status_By_HANNANStd($post_status_options) {
-		$post_status_options['private'] = __("Private", "Persian_Gravityforms_By_HANNANStd");
+		$post_status_options['private'] = __("خصوصی", "Persian_Gravityforms_By_HANNANStd");
 		return $post_status_options;
 	}
 	
     public function Update_Currency_By_HANNANStd($currencies) {
-		$currencies['IRR'] = array("name" => __("Iranian Rial", "Persian_Gravityforms_By_HANNANStd"), "symbol_left" => '', "symbol_right" => " ریال ", "symbol_padding" =>  "", "thousand_separator" => ',', "decimal_separator" => '.', "decimals" => 0);
-		$currencies['IRT'] = array("name" => __("Toman", "Persian_Gravityforms_By_HANNANStd"), "symbol_left" => '', "symbol_right" => " تومان ", "symbol_padding" => " ", "thousand_separator" => ',', "decimal_separator" => '.', "decimals" => 0);
+		$currencies['IRR'] = array("name" => __("ریال ایران", "Persian_Gravityforms_By_HANNANStd"), "symbol_left" => '', "symbol_right" => " ریال ", "symbol_padding" =>  "", "thousand_separator" => ',', "decimal_separator" => '.', "decimals" => 0);
+		$currencies['IRT'] = array("name" => __("تومان", "Persian_Gravityforms_By_HANNANStd"), "symbol_left" => '', "symbol_right" => " تومان ", "symbol_padding" => " ", "thousand_separator" => ',', "decimal_separator" => '.', "decimals" => 0);
 		return $currencies;
 	}
 	
     public function Gform_IRAN_By_HANNANStd( $address_types ) {
 		$address_types['persian'] = array(
-			'label'       => __( 'IRAN', 'Persian_Gravityforms_By_HANNANStd' ),
-			'country'     => __( 'IRAN', 'Persian_Gravityforms_By_HANNANStd' ),
-			'zip_label'   => __( 'Postal Code', 'Persian_Gravityforms_By_HANNANStd' ),
-			'state_label' => __( 'Province', 'Persian_Gravityforms_By_HANNANStd' ),
+			'label'       => __( 'ایران', 'Persian_Gravityforms_By_HANNANStd' ),
+			'country'     => __( 'ایران', 'Persian_Gravityforms_By_HANNANStd' ),
+			'zip_label'   => __( 'کد پستی', 'Persian_Gravityforms_By_HANNANStd' ),
+			'state_label' => __( 'استان', 'Persian_Gravityforms_By_HANNANStd' ),
 			'states'      => array( '',
-                        __( 'Azarbaijan - East', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Azarbaijan - West', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Ardabil', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Isfahan', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Alborz', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Ilam', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Bushehr', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Tehran', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Chahar Mahaal and Bakhtiari', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Khorasan - South', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Khorasan - Razavi', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Khorasan - North', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Khuzestan', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Zanjan', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Semnan', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Sistan and Baluchistan', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Fars', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Qazvin', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Qom', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Kurdistan', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Kerman', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Kermanshah', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Kohgiluyeh and Boyer-Ahmad', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Golestan', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Gilan', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Lorestan', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Mazandaran', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Markazi', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Hormozgān', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Hamadan', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Yazd', 'Persian_Gravityforms_By_HANNANStd' )   
+            __( 'آذربایجان شرقی', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'آذربایجان غربی', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'اردبیل', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'اصفهان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'البرز', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'ایلام', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'بوشهر', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'تهران', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'چهارمحال و بختیاری', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'خراسان شمالی', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'خراسان رضوی', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'خراسان جنوبی', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'خوزستان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'زنجان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'سمنان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'سیستان و بلوچستان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'فارس', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'قزوين', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'قم', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'کردستان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'کرمان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'کرمانشاه', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'کهگیلویه و بویراحمد', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'گلستان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'گیلان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'لرستان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'مازندران', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'مرکزی', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'هرمزگان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'همدان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'یزد', 'Persian_Gravityforms_By_HANNANStd' )   
 			)
 		);
 		return $address_types;
 	}
 	
-	public function Add_Iran_Predefined_Choice_By_HANNANStd($choices){
-			$choices[__( 'Provinces of Iran', 'Persian_Gravityforms_By_HANNANStd' )] = array(__( 'Azarbaijan - East', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Azarbaijan - West', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Ardabil', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Isfahan', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Alborz', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Ilam', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Bushehr', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Tehran', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Chahar Mahaal and Bakhtiari', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Khorasan - South', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Khorasan - Razavi', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Khorasan - North', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Khuzestan', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Zanjan', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Semnan', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Sistan and Baluchistan', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Fars', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Qazvin', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Qom', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Kurdistan', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Kerman', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Kermanshah', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Kohgiluyeh and Boyer-Ahmad', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Golestan', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Gilan', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Lorestan', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Mazandaran', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Markazi', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Hormozgān', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Hamadan', 'Persian_Gravityforms_By_HANNANStd' ),
-			__( 'Yazd', 'Persian_Gravityforms_By_HANNANStd' )
+	public function Add_Iran_States_Predefined_Choice_By_HANNANStd($choices){
+			$choices[__( 'استانهای ایران', 'Persian_Gravityforms_By_HANNANStd' )] = array(
+			__( 'آذربایجان شرقی', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'آذربایجان غربی', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'اردبیل', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'اصفهان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'البرز', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'ایلام', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'بوشهر', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'تهران', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'چهارمحال و بختیاری', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'خراسان شمالی', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'خراسان رضوی', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'خراسان جنوبی', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'خوزستان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'زنجان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'سمنان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'سیستان و بلوچستان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'فارس', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'قزوين', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'قم', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'کردستان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'کرمان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'کرمانشاه', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'کهگیلویه و بویراحمد', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'گلستان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'گیلان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'لرستان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'مازندران', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'مرکزی', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'هرمزگان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'همدان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'یزد', 'Persian_Gravityforms_By_HANNANStd' )   
+		);   return $choices;
+	}
+	
+	public function Add_Iran_Months_Predefined_Choice_By_HANNANStd($choices){
+			$choices[__( 'ماه های ایران', 'Persian_Gravityforms_By_HANNANStd' )] = array(__( 'فروردین', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'اردیبهشت', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'خرداد', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'تیر', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'مرداد', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'شهریور', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'مهر', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'آبان', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'آذر', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'دی', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'بهمن', 'Persian_Gravityforms_By_HANNANStd' ),
+			__( 'اسفند', 'Persian_Gravityforms_By_HANNANStd' )
 		);   return $choices;
 	}
 	
@@ -524,9 +546,12 @@ class GravityFormsPersian {
 		if (is_rtl() && ($page_prefix[0]=="gf" || $_SERVER['REQUEST_URI'] == '/wp-admin/' || $_SERVER['REQUEST_URI'] == '/wp-admin' || $_SERVER['REQUEST_URI'] == '/wp-admin/index.php' || $_SERVER['REQUEST_URI'] == '/wp-admin/index.php/')) {
 			wp_enqueue_style('Persian_GravityForms', plugins_url ( '/assets/css/persiangravity.css', __FILE__, null, GFCommon::$version ) );
 			wp_print_styles('gform_tooltip','Persian_GravityForms' );
-			wp_deregister_script('gform_datepicker_init');
 			wp_dequeue_script('jquery-ui-datepicker');
-			wp_enqueue_script('gform_datepicker_init', plugins_url ( '/assets/js/Datepicker_J_G.js', __FILE__), array( 'jquery', 'jquery-ui-core' ), GFCommon::$version, true );
+			wp_enqueue_script(array("jquery-ui-datepicker"));
+			wp_deregister_script('jquery-ui-datepicker');
+			wp_deregister_script(array("jquery-ui-datepicker"));
+			wp_deregister_script('gform_datepicker_init');
+			wp_enqueue_script('gform_datepicker_init', plugins_url ( '/assets/js/wp-admin-datepicker.js', __FILE__), array( 'jquery', 'jquery-ui-core' ), true );
 		}
     }
 	
@@ -676,7 +701,7 @@ class GravityFormsPersian {
 	}
 	
 	public function version(){
-		return '1.2.0';
+		return '1.3.0';
 	}
 
 	public function Add_Melli_Cart_Field_By_HANNANStd( $field_groups ) {
