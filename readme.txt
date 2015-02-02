@@ -89,7 +89,7 @@ You can read complete documentations on the [GravityForms.ir](http://www.Gravity
 * Added Gravity Form Sticky List Translate
 * Improve Transactions Security Levels
 * Source Code Cleaned up
-= 1.3.1 =
+= 1.3.0 =
 * Fixed : Some Minor bugs
 = 1.2.0 =
 * Fixed : Date Field Validation
@@ -124,7 +124,7 @@ You can read complete documentations on the [GravityForms.ir](http://www.Gravity
 * Added Gravity Form Sticky List Translate
 * Improve Transactions Security Levels
 * Source Code Cleaned up
-= 1.3.1 =
+= 1.3.0 =
 * Fixed : Some Minor bugs
 = 1.2.0 =
 * Fixed : Date Field Validation
