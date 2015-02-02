@@ -38,11 +38,16 @@ class PersianGravityForms_Post_Content_Merge_Tags {
     }
     function replace_merge_tags( $post_content ) {
 		$wp_session = WP_Session::get_instance();
+		@session_start();
+		if ($wp_session['refid'])
+			$session = $wp_session['refid'];
+		else 
+			$session = $_SESSION["refid"];
         $entry = $this->get_entry();
         if( !$entry )
         return $post_content;
         $form = GFFormsModel::get_form_meta( $entry['form_id'] );
-		if ( $wp_session['refid'] == $form["id"].$entry["id"] ) {
+		if ( $session == $form["id"].$entry["id"] ) {
         $post_content = $this->replace_field_label_merge_tags( $post_content, $form );
         $post_content = GFCommon::replace_variables( $post_content, $form, $entry, false, false, false );
 		} 
