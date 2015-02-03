@@ -165,7 +165,7 @@ class GravityFormsPersian {
 			<li class="Jalali_setting field_setting">
 				<input type="checkbox" id="check_jalali" onclick="SetFieldProperty('check_jalali', jQuery(this).is(':checked') ? 1 : 0);"/> 
 				<label class="inline gfield_value_label" for="field_admin_label">
-				<?php _e( 'بله', 'Persian_Gravityforms_By_HANNANStd' ); ?>
+				<?php _e( 'فعالسازی تاریخ شمسی', 'Persian_Gravityforms_By_HANNANStd' ); ?>
 				<?php gform_tooltip("form_check_jalali") ?>
 				</label>
 			</li>
