@@ -1,4 +1,5 @@
-<?php if( ! defined( 'WP_SESSION_COOKIE' ) )
+<?php 
+if( !defined( 'WP_SESSION_COOKIE' ) )
 define( 'WP_SESSION_COOKIE', '_wp_session' );
 if ( !class_exists( 'Recursive_ArrayAccess' ) ) {
 class Recursive_ArrayAccess implements ArrayAccess {
@@ -227,3 +228,4 @@ wp_schedule_event( time(), 'hourly', 'wp_session_garbage_collection' );
 }
 add_action( 'wp', 'wp_session_register_garbage_collection' );
 }
+?>

@@ -1,20 +1,4 @@
 <?php
-/**
- * Persian Gravity Forms // Gravity Forms Post Content Merge Tags
- *
- * Adds support for using Gravity Form merge tags in your post content. This functionality requires that the entry ID is
- * is passed to the post via the "id" parameter.
- *
- * Setup your confirmation page (requires GFv1.8) or confirmation URL "Redirect Query String" setting to
- * include this parameter: 'id={entry_id}'. You can then use any entry-based merge tag in your post content.
- *
- * @version   1.2
- * @author    HANNAN Std <david@gravitywiz.com>
- * @license   GPL-2.0+
- * @link      http://gravityforms.ir
- * @video     http://gravityforms.ir
- * @copyright 2014 Persian Gravity Forms
- */
 class PersianGravityForms_Post_Content_Merge_Tags {
 	public static $_entry = null;
 	private static $instance = null;
@@ -88,7 +72,6 @@ class PersianGravityForms_Post_Content_Merge_Tags {
         if( strpos( $text, '{encrypted_entry_id}' ) === false ) {
             return $text;
         }
-        // $entry is not always a "full" entry
         $entry_id = rgar( $entry, 'id' );
         if( $entry_id ) {
             $entry_id = $this->prepare_id( $entry['id'], true );
@@ -111,7 +94,6 @@ class PersianGravityForms_Post_Content_Merge_Tags {
             $redirect_url             = add_query_arg( array( 'id' => $id ), $confirmation['redirect'] );
             $confirmation['redirect'] = $redirect_url;
         }
-
         return $confirmation;
     }
     function prepare_id( $entry_id, $force_encrypt = false ) {
@@ -169,3 +151,4 @@ function persiangravityforms_post_content_merge_tags( $args = array() ) {
 return PersianGravityForms_Post_Content_Merge_Tags::get_instance( $args );
 }
 persiangravityforms_post_content_merge_tags();
+?>

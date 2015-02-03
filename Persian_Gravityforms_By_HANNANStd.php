@@ -3,7 +3,7 @@
 Plugin Name: Persian Gravity Forms
 Plugin URI: https://wordpress.org/plugins/persian-gravity-forms/
 Description: Gravity Forms for Iranian 
-Version: 1.3.1
+Version: 1.3.2
 Requires at least: 3.5
 Author: HANNAN Ebrahimi Setoode
 Author URI: http://www.gravityforms.ir/
@@ -16,7 +16,6 @@ class GravityFormsPersian {
 	private $file;
 	private $language;
 	private $is_persian;
-	
 	public function __construct( $file ) {
 		$this->file = $file;
 		//actions
@@ -50,7 +49,6 @@ class GravityFormsPersian {
 		add_filter('gform_field_content', array( $this, 'Add_Melli_Cart_Field_JavaScript_Checker_By_HANNANStd'), 10, 5);	
 		add_filter('gform_field_validation', array( $this, 'Input_Valid_Checker_By_HANNANStd'), 10, 4);	
 	}
-		
     public function Activated_Plugin_By_HANNANStd() {
 		$path = str_replace( WP_PLUGIN_DIR . '/', '', $this->file );
 		if ( $plugins = get_option( 'active_plugins' ) ) {
@@ -68,7 +66,6 @@ class GravityFormsPersian {
 			}
 		}
 	}
-	
 	public function init(){
         require_once("include/Jalali.php");
         require_once("include/Post_Content_Merge_Tags.php");
@@ -83,15 +80,12 @@ class GravityFormsPersian {
 		load_plugin_textdomain( 'Persian_Gravityforms_By_HANNANStd', false, $rel_path );
 		load_plugin_textdomain( 'gravityformsuserregistration', false, $rel_path );
 	}
-	
 	protected static function get_base_path(){
         $folder = basename(dirname(__FILE__));
         return WP_PLUGIN_DIR . "/" . $folder;
     }
-	
 	public function Load_Textdomain_Mo_File_By_HANNANStd( $mo_file, $domain ) {
-		if ( strpos( $mo_file, 'fa_IR.mo' ) !== false ) {
-			
+		if ( strpos( $mo_file, 'fa_IR.mo' ) !== false ) {		
 			$domains = array(
 				'gravityforms'                 => array(
 					'languages/gravityforms-fa_IR.mo'                 => 'gravityforms1.8/fa_IR.mo'
@@ -165,7 +159,6 @@ class GravityFormsPersian {
 		}
 		return $mo_file;
 	}
-	
 	public function Add_Jalali_Active_Standard_Settings($position, $form_id){
 		if($position == 25){
 			?>
@@ -179,7 +172,6 @@ class GravityFormsPersian {
 			<?php
 		}
 	}
-	
 	public function Editor_Script_By_HANNANStd(){
     ?>
 		<script type='text/javascript'>
@@ -197,10 +189,9 @@ class GravityFormsPersian {
 		</script>
     <?php
 	}
-	
 	public function Add_Encryption_tooltips_By_HANNANStd($tooltips){
 		$tooltips["form_check_jalali"] = "<h6>فعالسازی تاریخ شمسی</h6>در صورتی که از چند فیلد تاریخ استفاده میکنید ، فعالسازی تاریخ شمسی یکی از فیلدها کفایت میکند .<br/>تذکر : با توجه به آزمایشی بودن این قسمت ممکن است تداخل توابع سبب ناسازگاری با برخی قالب ها شود.";
-		$tooltips["form_field_mellicart"] = "<h6>نمایش لحظه ای شهر از روی کد ملی </h6>نمایش شهر و پیغام زیر فیلد کد ملی بعد از پر شدن فیلد . تذکر : در صورتی که این گزینه را فعال نمایید ،ممکن است فراخوانی شهر های ایران با توجه به کسرت آنها سبب سنگین شدن صفحه گردد.";
+		$tooltips["form_field_mellicart"] = "<h6>نمایش لحظه ای شهر از روی کد ملی </h6>نمایش شهر و پیغام زیر فیلد کد ملی بعد از پر شدن فیلد . تذکر : در صورتی که این گزینه را فعال نمایید ،ممکن است فراخوانی شهر های ایران با توجه به زیاد بودن آنها سبب سنگین شدن صفحه گردد.";
 		$tooltips["form_field_mellicart_sp"] = "<h6>جدا سازی ارقام</h6>در صورتی که این گزینه را فعال نمایید ، پس از پر شدن فیلد ،  <strong>در صورتی که کد ملی وارد شده صحیح تشخصی داده شود</strong> ؛ کد ملی به صورت زیر در خواهد آمد :<br/>xxx-xxxxxx-x";
 		$tooltips["form_field_mellicart_header"] = "<h6>پیغام خطا</h6>در صورتی که کاربر فیلد کد ملی را به صورت صحیح وارد نکند ؛ پیغام خطا را مشاهده میکند که میتوانید این پیغام ها را مدیریت نمایید . در صورتی که مقادیر زیر را خالی بگذارید پیغام پیشفرض نمایش داده خواهد شد.";
 		$tooltips["form_field_mellicart_sp1"] = "<h6>پیغام پیشفرض</h6>با توجه به اینکه کد ملی فقط باید به صورت عدد باشد ، در صورتی که کاراکتری غیر از عدد وارد شده باشد پیغام خطا نمایش داده خواهد شد .<br/>پیغام پیشفرض : کد ملی فقط باید به صورت عدد وارد شود . ";
@@ -209,13 +200,12 @@ class GravityFormsPersian {
 		$tooltips["form_field_mellicart_sp4"] = "<h6>پیغام پیشفرض</h6>در صورتی که کد ملی وارد شده مطابق با الگوریتم کشور نباشد پیغام خطا نمایش داده خواهد شد .<br/>پیغام پیشفرض : کد ملی وارد شده مطابق با استانداردهای کشور نمی باشد .";	
 		return $tooltips;
 	}
-	
 	function Add_Jalali_Front_End_On_Off_Switch_By_HANNANStd( $form, $ajax ) {
 		foreach ( $form['fields'] as $field ) {
 			if ( ( $field['type'] == 'date' ) ) {
 				if(rgget("check_jalali", $field)){
-					//add_filter('gform_date_min_year', array( $this, 'Set_Min_Year_By_HANNANStd' ) );
-					//add_filter('gform_date_max_year', array( $this, 'Set_Max_Year_By_HANNANStd' ) );
+					add_filter('gform_date_min_year', array( $this, 'Set_Min_Year_By_HANNANStd' ) );
+					add_filter('gform_date_max_year', array( $this, 'Set_Max_Year_By_HANNANStd' ) );
 					if (!IS_ADMIN)
 					{
 						wp_deregister_script('gform_datepicker_init');
@@ -226,32 +216,26 @@ class GravityFormsPersian {
 			}
 		}
 	}
-	
 	public function Set_Min_Year_By_HANNANStd($min_year){
 		$min_year = GF_gregorian_to_jalali($min_year,03,21);
 		return $min_year[0]+1;
 	}
-	
 	public function Set_Max_Year_By_HANNANStd($max_year){
 		$max_year = GF_gregorian_to_jalali($max_year,03,21);
 		return $max_year[0]+20;
 	}
-	
     public function GravityForms_Footer_Left_By_HANNANStd($text) {
 		$text = sprintf(__("%sGravity Forms%s for WordPress is a full featured contact form plugin .", "Persian_Gravityforms_By_HANNANStd"), '<a href="http://gravityforms.ir" target="_blank">', "</a>");return $text;
 	}
-	
     public function Add_Private_Post_Status_By_HANNANStd($post_status_options) {
 		$post_status_options['private'] = __("خصوصی", "Persian_Gravityforms_By_HANNANStd");
 		return $post_status_options;
 	}
-	
     public function Update_Currency_By_HANNANStd($currencies) {
 		$currencies['IRR'] = array("name" => __("ریال ایران", "Persian_Gravityforms_By_HANNANStd"), "symbol_left" => '', "symbol_right" => " ریال ", "symbol_padding" =>  "", "thousand_separator" => ',', "decimal_separator" => '.', "decimals" => 0);
 		$currencies['IRT'] = array("name" => __("تومان", "Persian_Gravityforms_By_HANNANStd"), "symbol_left" => '', "symbol_right" => " تومان ", "symbol_padding" => " ", "thousand_separator" => ',', "decimal_separator" => '.', "decimals" => 0);
 		return $currencies;
 	}
-	
     public function Gform_IRAN_By_HANNANStd( $address_types ) {
 		$address_types['persian'] = array(
 			'label'       => __( 'ایران', 'Persian_Gravityforms_By_HANNANStd' ),
@@ -294,7 +278,6 @@ class GravityFormsPersian {
 		);
 		return $address_types;
 	}
-	
 	public function Add_Iran_States_Predefined_Choice_By_HANNANStd($choices){
 			$choices[__( 'استانهای ایران', 'Persian_Gravityforms_By_HANNANStd' )] = array(
 			__( 'آذربایجان شرقی', 'Persian_Gravityforms_By_HANNANStd' ),
@@ -330,7 +313,6 @@ class GravityFormsPersian {
 			__( 'یزد', 'Persian_Gravityforms_By_HANNANStd' )   
 		);   return $choices;
 	}
-	
 	public function Add_Iran_Months_Predefined_Choice_By_HANNANStd($choices){
 			$choices[__( 'ماه های ایران', 'Persian_Gravityforms_By_HANNANStd' )] = array(__( 'فروردین', 'Persian_Gravityforms_By_HANNANStd' ),
 			__( 'اردیبهشت', 'Persian_Gravityforms_By_HANNANStd' ),
@@ -345,8 +327,7 @@ class GravityFormsPersian {
 			__( 'بهمن', 'Persian_Gravityforms_By_HANNANStd' ),
 			__( 'اسفند', 'Persian_Gravityforms_By_HANNANStd' )
 		);   return $choices;
-	}
-	
+	}	
 	public function Add_Merge_Tags_To_List_By_HANNANStd($form){ ?>
 		<script type="text/javascript">
 			gform.addFilter("gform_merge_tags", "add_merge_tags");
@@ -366,7 +347,6 @@ class GravityFormsPersian {
 	<?php 
 		return $form; 
 	}
-	
 	function First_Column_Actions_By_HANNANStd($form_id, $field_id, $value, $lead, $query_string) {
 		$url = get_bloginfo("wpurl") . "/wp-admin/admin.php?page=gf_entries&view=entries&id=" . $form_id;
 		$gateway = gform_get_meta($lead["id"], "payment_gateway");
@@ -395,7 +375,6 @@ class GravityFormsPersian {
 		else if ($lead["payment_status"])
 			echo '<a  class="stat" href="'.$url.'&sort=0&dir=DESC&s=Processing&field_id=payment_status&operator=is" style="color:'.$color.';"> موفق </a>';
 	}
-	
 	public function Update_Lead_No_Gateway_By_HANNANStd($lead, $form) {
 		$gateway = gform_get_meta($lead['id'], 'payment_gateway');
 		$method = $lead['payment_method'];
@@ -418,7 +397,6 @@ class GravityFormsPersian {
 		RGFormsModel::update_lead($lead);
 		return $lead;
 	}
-	
 	public function GformReplaceMergeTags_By_HANNANStd($text, $form, $lead, $url_encode, $esc_html, $nl2br, $format){
 	$gateway = gform_get_meta($lead['id'], 'payment_gateway');
 	if ($lead['payment_status']=="Active" || $lead['payment_status']=="Paid")
@@ -442,7 +420,6 @@ class GravityFormsPersian {
         $gateway ? $gateway : '',			
         isset($lead['transaction_id']) ? $lead['transaction_id'] : '',
 		isset($lead['payment_status']) ? $payment_status : '',	
-		
 		$gateway ? '
 		<table width="99%" border="0" cellpadding="1" cellspacing="0" bgcolor="#EAEAEA" style="border:1px solid #e9e9e9!important;">
 			<tr bgcolor="#EAF2FA">
@@ -455,7 +432,6 @@ class GravityFormsPersian {
 				</td>
 			</tr>
 		</table>' : '',
-		
 		isset($lead['transaction_id']) ? '
 		<table width="99%" border="0" cellpadding="1" cellspacing="0" bgcolor="#EAEAEA" style="border:1px solid #e9e9e9!important;">
 			<tr bgcolor="#EAF2FA">
@@ -469,7 +445,6 @@ class GravityFormsPersian {
 					</td>
 				</tr>
 		</table>' : '',
-		
 		isset($lead['payment_status']) ? '
 		<table width="99%" border="0" cellpadding="1" cellspacing="0" bgcolor="#EAEAEA" style="border:1px solid #e9e9e9!important;">
 			<tr bgcolor="#EAF2FA">
@@ -483,7 +458,6 @@ class GravityFormsPersian {
 				</td>
 			</tr>
 		</table>' : '',
-		
 		(isset($lead['transaction_id']) && $gateway && isset($lead['payment_status']) ) ? '
 		<table width="99%" border="0" cellpadding="1" cellspacing="0" bgcolor="#EAEAEA" style="border:1px solid #e9e9e9!important;">
 			<tr>
@@ -525,18 +499,15 @@ class GravityFormsPersian {
 		'<div style="text-align: right !important; direction: rtl !important;">',
 		'</div>',
 	);
-	
 	$text = str_replace($tags, $values, $text);
 	return $text;
 	}
-	
     public function Add_Styles_Print_By_HANNANStd($value, $form){	
 		if( is_rtl() ) {
 			wp_register_style('print_entry', plugins_url ( '/assets/css/printer.css', __FILE__, true ) );
 			return array('print_entry');
 		}
     }
-	
     public function GravityForms_Admin_CSS_By_HANNANStd() {
 		if(!class_exists('GFForms')){
 			return;
@@ -554,14 +525,12 @@ class GravityFormsPersian {
 			wp_enqueue_script('gform_datepicker_init', plugins_url ( '/assets/js/wp-admin-datepicker.js', __FILE__), array( 'jquery', 'jquery-ui-core' ), true );
 		}
     }
-	
     public function Persian_GravityForms_Dashboard_By_HANNANStd() {
 		if ( !current_user_can('manage_options') ) 
 			return;
 		global $wp_meta_boxes;
 		wp_add_dashboard_widget('persiangf_wd_hannanstd', __( 'Persian Gravity Forms Dashboard', 'Persian_Gravityforms_By_HANNANStd' ) , array( $this, 'Persian_GravityForms_Widget_By_HANNANStd'));
 	}
-	
 	public static function Persian_GravityForms_Widget_By_HANNANStd() {
 		global $_wp_admin_css_colors;
 		$current_color = get_user_option( 'admin_color' );
@@ -622,7 +591,6 @@ class GravityFormsPersian {
 		$rss->__destruct();
 		unset($rss);
 	}
-
 	public static function get_product_price($form, $entry){
 		$currency = GFCommon::get_currency();
         $products = GFCommon::get_product_fields($form, $entry, true);
@@ -695,15 +663,12 @@ class GravityFormsPersian {
 			$today = strtotime ($today);
 			return array("tz" => $tz, "today" => $today);
 	}
-	
 	public static function get_base_url(){
 		return plugins_url( '', __FILE__ );
 	}
-	
 	public function version(){
-		return '1.3.1';
+		return '1.3.2';
 	}
-
 	public function Add_Melli_Cart_Field_By_HANNANStd( $field_groups ) {
 		foreach( $field_groups as &$group ){
 			if( $group["name"] == "advanced_fields" ){
@@ -717,21 +682,18 @@ class GravityFormsPersian {
 		}
 		return $field_groups;
 	}
-	
 	public function Add_Melli_Cart_Field_Title_By_HANNANStd($type) {
 		if ($type == 'mellicart') {
 			return 'کد ملی';
 		}
 	}
-	
 	public function Add_Melli_Cart_Field_Label_By_HANNANStd(){
 		?>
 		case "mellicart" :
 		field.label = 'کد ملی';
 		break;
 		<?php
-	}
-	
+	}	
 	public function Add_Melli_Cart_Field_Input_By_HANNANStd($input, $field, $value, $lead_id, $form_id ){
 		if ( $field["type"] == "mellicart" ) {		
 			$id = $field["id"];
@@ -763,7 +725,6 @@ class GravityFormsPersian {
 		}
 	return $input;
 	}
-	
 	public function Add_Melli_Cart_Field_Setting_By_HANNANStd( $position, $form_id ){
 		if( $position == 50 ){
 		?>
@@ -820,14 +781,12 @@ class GravityFormsPersian {
 			<?php
 		}
 	}
-
 	public function Add_Melli_Cart_Field_Class_By_HANNANStd($classes, $field, $form){
 		if( $field["type"] == "mellicart" ){
 			$classes .= " gform_mellicart";
 		}
 		return $classes;
 	}
-
 	public function Add_Melli_Cart_PHP_Checker_By_HANNANStd($meli_code='',$setting){	
 		if (!empty($meli_code)) {
 		if ($setting == 1) {
@@ -846,20 +805,15 @@ class GravityFormsPersian {
 		{
 			return 2;
 		}
-		
 		if(!is_numeric($meli_code)) 
 			return 4;
 		$meli_code = (string) preg_replace('/[^0-9]/','',$meli_code);
-		
 		if(strlen($meli_code)>10 or strlen($meli_code)<8)
 			return 3;
-    
 		if(strlen($meli_code)==8)
 			$meli_code = "00".$meli_code;
-   
 		if(strlen($meli_code)==9)
 			$meli_code = "0".$meli_code;
-   
 		$list_code = str_split($meli_code);
 		$last = (int) $list_code[9];
 		unset($list_code[9]);
@@ -879,7 +833,6 @@ class GravityFormsPersian {
 		}
 		return;
 	}
-	
 	public function Add_Melli_Cart_Field_JavaScript_Checker_By_HANNANStd($content, $field, $value, $lead_id, $form_id){
 		if ( $field["type"] == "mellicart" && (rgget("field_mellicart", $field) || rgget("field_mellicart_sp", $field) ) && !IS_ADMIN ) 
 		{
@@ -1031,15 +984,12 @@ class GravityFormsPersian {
 		}
 			return $content;
 	}
-	
 	public static function checkdate($month, $day, $year){
         if(empty($month) || !is_numeric($month) || empty($day) || !is_numeric($day) || empty($year) || !is_numeric($year) || strlen($year) != 4)
             return false;
         return checkdate($month, $day, $year);
     }
-	
-	public function Input_Valid_Checker_By_HANNANStd($result, $value, $form, $field){
-		
+	public function Input_Valid_Checker_By_HANNANStd($result, $value, $form, $field){	
 		//shamsi date formtat validator
 		if ( $field["type"] == "date" ) 
 		{
@@ -1129,7 +1079,6 @@ class GravityFormsPersian {
 				}		
 			}
 		}
-		
 		//melli cart validator
 		if ( $field["type"] == "mellicart" ) 
 		{
@@ -1174,10 +1123,10 @@ class GravityFormsPersian {
 					$result["message"] = 'این کد ملی توسط فرد دیگری ثبت شده است .';
 			}		
 		}
-		
 		//else returne results
 		return $result;
 	}
 }
 global $Persian_Gravityforms_By_HANNANStd_plugin;
 $Persian_Gravityforms_By_HANNANStd_plugin = new GravityFormsPersian( __FILE__ );
+?>
