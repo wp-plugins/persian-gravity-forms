@@ -151,7 +151,7 @@ class GravityFormsPersian {
 			);
 			
 			
-			if (version_compare( GFCommon::$version , '1.8.0') >= 0) {
+			if (version_compare( GFCommon::$version , '1.9.0') >= 0) {
 				$Gdomains = array(
 					'gravityforms'                 => array(
 						'languages/gravityforms-fa_IR.mo'                 => 'gravityforms1.9/fa_IR.mo'
