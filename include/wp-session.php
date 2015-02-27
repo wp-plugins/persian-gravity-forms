@@ -85,6 +85,7 @@ $this->exp_variant = time() + (int) apply_filters( 'wp_session_expiration_varian
 $this->expires = time() + (int) apply_filters( 'wp_session_expiration', 30 * 60 );
 }
 protected function set_cookie(){
+if( !headers_sent() )
 setcookie(WP_SESSION_COOKIE,$this->session_id.'||'.$this->expires.'||'.$this->exp_variant,$this->expires,COOKIEPATH,COOKIE_DOMAIN );
 }
 protected function generate_id() {
