@@ -3,7 +3,7 @@
 Plugin Name: Persian Gravity Forms
 Plugin URI: https://wordpress.org/plugins/persian-gravity-forms/
 Description: Gravity Forms for Iranian 
-Version: 1.4.0
+Version: 1.4.1
 Requires at least: 3.5
 Author: HANNAN Ebrahimi Setoode
 Author URI: http://www.gravityforms.ir/
@@ -151,7 +151,7 @@ class GravityFormsPersian {
 			);
 			
 			
-			if (version_compare( GFCommon::$version , '1.9.0') >= 0) {
+			if (self::is_gravityforms_new()) {
 				$Gdomains = array(
 					'gravityforms'                 => array(
 						'languages/gravityforms-fa_IR.mo'                 => 'gravityforms1.9/fa_IR.mo'
@@ -183,6 +183,17 @@ class GravityFormsPersian {
 		}
 		return $mo_file;
 	}
+	
+	private static function is_gravityforms_new(){
+        if(class_exists("GFCommon")){
+            $is_new_version = version_compare(GFCommon::$version, '1.9.0', ">=");
+            return $is_new_version;
+        }
+        else{
+            return false;
+        }
+    }
+	
 	public function Add_Field_Active_Standard_Settings($position, $form_id){
 		if($position == 25){
 			?>
@@ -749,7 +760,7 @@ class GravityFormsPersian {
 		return plugins_url( '', __FILE__ );
 	}
 	public function version(){
-		return '1.4.0';
+		return '1.4.1';
 	}
 	public function Add_HANNANStd_Field_By_HANNANStd( $field_groups ) {
 		foreach( $field_groups as &$group ){
