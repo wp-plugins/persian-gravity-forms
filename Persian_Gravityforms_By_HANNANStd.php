@@ -3,7 +3,7 @@
 Plugin Name: Persian Gravity Forms
 Plugin URI: https://wordpress.org/plugins/persian-gravity-forms/
 Description: Gravity Forms for Iranian 
-Version: 1.4.1
+Version: 1.4.2
 Requires at least: 3.5
 Author: HANNAN Ebrahimi Setoode
 Author URI: http://www.gravityforms.ir/
@@ -562,27 +562,28 @@ class GravityFormsPersian {
 	}
 	public function Add_RTL_Style_To_Footer_By_HANNANStd() {
 		
-		echo '<style type="text/css">
-				.gright,.gform_wrapper form ,.gform_wrapper ul li:before, .gform_wrapper ul li:after, .gform_wrapper ul.gform_fields {
-					text-align: right !important;
-					direction:rtl !important;
-				}
-				.gleft,.gform_wrapper input[type="url"], .gform_wrapper input[type="email"],
-				.gform_wrapper input[type="tel"], .gform_wrapper input[type="number"], 
-				.gform_wrapper input[type="password"],body.rtl .gform_wrapper input[type="email"], body.rtl .gform_wrapper input[type="password"], 
-				body.rtl .gform_wrapper input[type="url"], body.rtl .gform_wrapper input[type="tel"],body .gform_wrapper.gf_rtl_wrapper input[type="email"],
-				body .gform_wrapper.gf_rtl_wrapper input[type="password"], body .gform_wrapper.gf_rtl_wrapper input[type="url"], body .gform_wrapper.gf_rtl_wrapper input[type="tel"] {
-					text-align:left !important;
-					direction:ltr !important;
-				}	
-				.gform_wrapper .ginput_complex .ginput_left {
-					float: right !important;
-				}
-				.gform_wrapper .ginput_complex .ginput_right {
-					float: left !important;
-				}
-			</style>';
-		
+		if( is_rtl() ) {
+			echo '<style type="text/css">
+					.gright,.gform_wrapper form ,.gform_wrapper ul li:before, .gform_wrapper ul li:after, .gform_wrapper ul.gform_fields {
+						text-align: right !important;
+						direction:rtl !important;
+					}
+					.gleft,.gform_wrapper input[type="url"], .gform_wrapper input[type="email"],
+					.gform_wrapper input[type="tel"], .gform_wrapper input[type="number"], 
+					.gform_wrapper input[type="password"],body.rtl .gform_wrapper input[type="email"], body.rtl .gform_wrapper input[type="password"], 
+					body.rtl .gform_wrapper input[type="url"], body.rtl .gform_wrapper input[type="tel"],body .gform_wrapper.gf_rtl_wrapper input[type="email"],
+					body .gform_wrapper.gf_rtl_wrapper input[type="password"], body .gform_wrapper.gf_rtl_wrapper input[type="url"], body .gform_wrapper.gf_rtl_wrapper input[type="tel"] {
+						text-align:left !important;
+						direction:ltr !important;
+					}	
+					.gform_wrapper .ginput_complex .ginput_left {
+						float: right !important;
+					}
+					.gform_wrapper .ginput_complex .ginput_right {
+						float: left !important;
+					}
+				</style>';
+		}	
 	}
     public function Add_Styles_Print_By_HANNANStd($value, $form){	
 		if( is_rtl() ) {
@@ -760,7 +761,7 @@ class GravityFormsPersian {
 		return plugins_url( '', __FILE__ );
 	}
 	public function version(){
-		return '1.4.1';
+		return '1.4.2';
 	}
 	public function Add_HANNANStd_Field_By_HANNANStd( $field_groups ) {
 		foreach( $field_groups as &$group ){
