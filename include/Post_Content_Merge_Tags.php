@@ -26,7 +26,7 @@ class PersianGravityForms_Post_Content_Merge_Tags {
 		if ($wp_session['refid'])
 			$session = $wp_session['refid'];
 		else 
-			$session = $_SESSION["refid"];
+			$session = isset($_SESSION["refid"]) ? $_SESSION["refid"] : '';
         $entry = $this->get_entry();
         if( !$entry )
         return $post_content;

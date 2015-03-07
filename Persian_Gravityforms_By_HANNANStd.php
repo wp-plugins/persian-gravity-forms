@@ -3,7 +3,7 @@
 Plugin Name: Persian Gravity Forms
 Plugin URI: https://wordpress.org/plugins/persian-gravity-forms/
 Description: Gravity Forms for Iranian 
-Version: 1.4.2
+Version: 1.4.3
 Requires at least: 3.5
 Author: HANNAN Ebrahimi Setoode
 Author URI: http://www.gravityforms.ir/
@@ -72,7 +72,7 @@ class GravityFormsPersian {
         require_once("include/Jalali.php");
         require_once("include/Post_Content_Merge_Tags.php");
 		$rel_path = dirname( plugin_basename( $this->file ) ) . '/languages/';
-		if ( $this->language == null ) {
+		if ( $this->language == null && defined('WPLANG') ) {
 			$this->language = get_option( 'WPLANG', WPLANG );
 			$this->is_persian = ( $this->language == 'fa' || $this->language == 'fa_IR' );
 		}
@@ -604,7 +604,7 @@ class GravityFormsPersian {
 			wp_print_styles('gform_tooltip','Persian_GravityForms' );
 			wp_dequeue_script('jquery-ui-datepicker');
 			wp_dequeue_script(array("jquery-ui-datepicker"));
-			wp_deregister_script('jquery-ui-datepicker');
+		//	wp_deregister_script('jquery-ui-datepicker');
 			wp_deregister_script(array("jquery-ui-datepicker"));
 			wp_deregister_script('gform_datepicker_init');
 			wp_enqueue_script('gform_datepicker_init', plugins_url ( '/assets/js/wp-admin-datepicker.js', __FILE__), array( 'jquery', 'jquery-ui-core' ), true );
@@ -761,7 +761,7 @@ class GravityFormsPersian {
 		return plugins_url( '', __FILE__ );
 	}
 	public function version(){
-		return '1.4.2';
+		return '1.4.3';
 	}
 	public function Add_HANNANStd_Field_By_HANNANStd( $field_groups ) {
 		foreach( $field_groups as &$group ){
