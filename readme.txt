@@ -3,8 +3,8 @@ Contributors: hannanstd
 Tags: gravityforms,gravity forms,persian gravity forms,persian gravityforms,gravityforms farsi,gravity forms farsi,rtl,fa_ir,iranian,iranian rials,iranian toman,iran state,gravityforms.ir,gravity forms payment,gravity forms gateway,gravity forms iran gateways
 Donate link: http://www.gravityforms.ir
 Requires at least: 3.5
-Tested up to: 4.1.1
-Stable tag: 1.4.7
+Tested up to: 4.2
+Stable tag: 1.5.0
 License: GPL 2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 This WordPress plugin extends the Gravity Forms plugin and its addons with the Persian language .
@@ -83,6 +83,9 @@ You can read complete documentations on the [GravityForms.ir](http://www.Gravity
 19. Iranian National Code field Advanced setting
 
 == Changelog ==
+= 1.5.0 =
+* Added Live Preview Button
+* Update : Coupons addons translation
 = 1.4.7 =
 * Fixed : Some Minor bugs
 = 1.4.6 =
@@ -140,6 +143,9 @@ You can read complete documentations on the [GravityForms.ir](http://www.Gravity
 * First version
 
 == Upgrade Notice ==
+= 1.5.0 =
+* Added Live Preview Button
+* Update : Coupons addons translation
 = 1.4.7 =
 * Fixed : Some Minor bugs
 = 1.4.6 =

@@ -11,7 +11,7 @@ class PersianGravityForms_Post_Content_Merge_Tags {
         if( ! class_exists( 'GFForms' ) )
             return;
         $this->_args = wp_parse_args( $args, array(
-            'auto_append_id' => true, // true, false or array of form IDs
+            'auto_append_id' => true,
             'encrypt_id'     => false,
         ) );
         add_filter( 'the_content', array( $this, 'replace_merge_tags' ), 1 );
@@ -148,7 +148,7 @@ class PersianGravityForms_Post_Content_Merge_Tags {
     }
 }
 function persiangravityforms_post_content_merge_tags( $args = array() ) {
-return PersianGravityForms_Post_Content_Merge_Tags::get_instance( $args );
+	return PersianGravityForms_Post_Content_Merge_Tags::get_instance( $args );
 }
 persiangravityforms_post_content_merge_tags();
 ?>

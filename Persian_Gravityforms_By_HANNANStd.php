@@ -3,7 +3,7 @@
 Plugin Name: Persian Gravity Forms
 Plugin URI: https://wordpress.org/plugins/persian-gravity-forms/
 Description: Gravity Forms for Iranian 
-Version: 1.4.7
+Version: 1.5.0
 Requires at least: 3.5
 Author: HANNAN Ebrahimi Setoode
 Author URI: http://www.gravityforms.ir/
@@ -12,6 +12,9 @@ Domain Path: /languages/
 License: GPL 2
 */
 require_once("include/wp-session.php");
+require_once("include/Live_Preview.php");
+if(class_exists("GIRLivePreview"))
+	new GIRLivePreview();
 class GravityFormsPersian {
 	private $file;
 	private $language;
@@ -600,7 +603,11 @@ class GravityFormsPersian {
 			return;
 		$current_page = trim(strtolower(RGForms::get("page")));
 		$page_prefix = explode("_", $current_page);
-		if (is_rtl() && ($page_prefix[0]=="gf" || RGForms::is_gravity_page() || 
+		if ( isset($_GET['page']) )
+			$is_gravityforms_page = (substr($_GET['page'],0,12) == 'gravityforms') ? 1 : 0;
+		else
+			$is_gravityforms_page = 0;
+		if (is_rtl() && ($page_prefix[0]=="gf" || RGForms::is_gravity_page() || $is_gravityforms_page == 1 || 
 		$_SERVER['REQUEST_URI'] == '/wp-admin/' || $_SERVER['REQUEST_URI'] == '/wp-admin' || 
 		$_SERVER['REQUEST_URI'] == '/wp-admin/index.php' || $_SERVER['REQUEST_URI'] == '/wp-admin/index.php/')) 
 		{
@@ -765,7 +772,7 @@ class GravityFormsPersian {
 		return plugins_url( '', __FILE__ );
 	}
 	public function version(){
-		return '1.4.7';
+		return '1.5.0';
 	}
 	public function Add_HANNANStd_Field_By_HANNANStd( $field_groups ) {
 		foreach( $field_groups as &$group ){
