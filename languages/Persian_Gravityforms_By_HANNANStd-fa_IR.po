@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Persian Gravity Forms v1.1.1\n"
+"Project-Id-Version: Persian Gravity Forms v1.5.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-12-21 14:22:28+0000\n"
+"PO-Revision-Date: 2015-05-06 22:21:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,81 +20,27 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes"
 
-#: Persian_Gravityforms_By_HANNANStd.php:219
+#: Persian_Gravityforms_By_HANNANStd.php:306
 #, php-format
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "%sGravity Forms%s for WordPress is a full featured contact form plugin ."
 msgstr "از اینکه %sGravity Forms%s فارسی را انتخاب کرده اید خوشحالیم ."
 
-#: Persian_Gravityforms_By_HANNANStd.php:241
-#: Persian_Gravityforms_By_HANNANStd.php:277
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Alborz"
-msgstr "البرز"
-
-#: Persian_Gravityforms_By_HANNANStd.php:239
-#: Persian_Gravityforms_By_HANNANStd.php:275
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Ardabil"
-msgstr "اردبیل"
-
-#: Persian_Gravityforms_By_HANNANStd.php:237
-#: Persian_Gravityforms_By_HANNANStd.php:273
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Azarbaijan - East"
-msgstr "آذربایجان شرقی"
-
-#: Persian_Gravityforms_By_HANNANStd.php:238
-#: Persian_Gravityforms_By_HANNANStd.php:274
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Azarbaijan - West"
-msgstr "آذربایجان غربی"
-
-#: Persian_Gravityforms_By_HANNANStd.php:243
-#: Persian_Gravityforms_By_HANNANStd.php:279
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Bushehr"
-msgstr "بوشهر"
-
-#: Persian_Gravityforms_By_HANNANStd.php:372
+#: Persian_Gravityforms_By_HANNANStd.php:485
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "Cancelled"
 msgstr "منصرف شده"
 
-#: Persian_Gravityforms_By_HANNANStd.php:245
-#: Persian_Gravityforms_By_HANNANStd.php:281
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Chahar Mahaal and Bakhtiari"
-msgstr "چهارمحال و بختیاری"
-
-#: Persian_Gravityforms_By_HANNANStd.php:370
+#: Persian_Gravityforms_By_HANNANStd.php:483
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "Failed"
 msgstr "ناموفق"
-
-#: Persian_Gravityforms_By_HANNANStd.php:253
-#: Persian_Gravityforms_By_HANNANStd.php:289
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Fars"
-msgstr "فارس"
-
-#: Persian_Gravityforms_By_HANNANStd.php:261
-#: Persian_Gravityforms_By_HANNANStd.php:297
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Gilan"
-msgstr "گیلان"
-
-#: Persian_Gravityforms_By_HANNANStd.php:260
-#: Persian_Gravityforms_By_HANNANStd.php:296
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Golestan"
-msgstr "گلستان"
 
 #. translators: plugin header field 'Description'
 #: Persian_Gravityforms_By_HANNANStd.php:0
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "Gravity Forms for Iranian"
-msgstr "بسته فارسی ساز Gravity Forms + اضافه کردن واحد پولی ایران ، استان های ایران ، برچسب های تراکنش ایمیل و ..."
+msgstr "افزونه بومی ساز + مکمل نیرو زای Gravity Forms"
 
 #. translators: plugin header field 'Author'
 #: Persian_Gravityforms_By_HANNANStd.php:0
@@ -102,125 +48,24 @@ msgstr "بسته فارسی ساز Gravity Forms + اضافه کردن واحد 
 msgid "HANNAN Ebrahimi Setoode"
 msgstr "حنان ابراهیمی ستوده"
 
-#: Persian_Gravityforms_By_HANNANStd.php:266
-#: Persian_Gravityforms_By_HANNANStd.php:302
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Hamadan"
-msgstr "همدان"
-
-#: Persian_Gravityforms_By_HANNANStd.php:265
-#: Persian_Gravityforms_By_HANNANStd.php:301
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Hormozgān"
-msgstr "هرمزگان"
-
-#: Persian_Gravityforms_By_HANNANStd.php:232
-#: Persian_Gravityforms_By_HANNANStd.php:233
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "IRAN"
-msgstr "ایران"
-
-#: Persian_Gravityforms_By_HANNANStd.php:242
-#: Persian_Gravityforms_By_HANNANStd.php:278
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Ilam"
-msgstr "ایلام"
-
-#: Persian_Gravityforms_By_HANNANStd.php:226
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Iranian Rial"
-msgstr "ریال ایران"
-
-#: Persian_Gravityforms_By_HANNANStd.php:240
-#: Persian_Gravityforms_By_HANNANStd.php:276
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Isfahan"
-msgstr "اصفهان"
-
-#: Persian_Gravityforms_By_HANNANStd.php:257
-#: Persian_Gravityforms_By_HANNANStd.php:293
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Kerman"
-msgstr "کرمان"
-
-#: Persian_Gravityforms_By_HANNANStd.php:258
-#: Persian_Gravityforms_By_HANNANStd.php:294
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Kermanshah"
-msgstr "کرمانشاه"
-
-#: Persian_Gravityforms_By_HANNANStd.php:248
-#: Persian_Gravityforms_By_HANNANStd.php:284
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Khorasan - North"
-msgstr "خراسان شمالی"
-
-#: Persian_Gravityforms_By_HANNANStd.php:247
-#: Persian_Gravityforms_By_HANNANStd.php:283
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Khorasan - Razavi"
-msgstr "خراسان رضوی"
-
-#: Persian_Gravityforms_By_HANNANStd.php:246
-#: Persian_Gravityforms_By_HANNANStd.php:282
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Khorasan - South"
-msgstr "خراسان جنوبی"
-
-#: Persian_Gravityforms_By_HANNANStd.php:249
-#: Persian_Gravityforms_By_HANNANStd.php:285
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Khuzestan"
-msgstr "خوزستان"
-
-#: Persian_Gravityforms_By_HANNANStd.php:259
-#: Persian_Gravityforms_By_HANNANStd.php:295
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Kohgiluyeh and Boyer-Ahmad"
-msgstr "کهگیلویه و بویراحمد"
-
-#: Persian_Gravityforms_By_HANNANStd.php:256
-#: Persian_Gravityforms_By_HANNANStd.php:292
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Kurdistan"
-msgstr "کردستان"
-
-#: Persian_Gravityforms_By_HANNANStd.php:262
-#: Persian_Gravityforms_By_HANNANStd.php:298
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Lorestan"
-msgstr "لرستان"
-
-#: Persian_Gravityforms_By_HANNANStd.php:264
-#: Persian_Gravityforms_By_HANNANStd.php:300
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Markazi"
-msgstr "مرکزی"
-
-#: Persian_Gravityforms_By_HANNANStd.php:263
-#: Persian_Gravityforms_By_HANNANStd.php:299
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Mazandaran"
-msgstr "مازندران"
-
-#: Persian_Gravityforms_By_HANNANStd.php:368
+#: Persian_Gravityforms_By_HANNANStd.php:481
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "Paid"
 msgstr "موفق"
 
-#: Persian_Gravityforms_By_HANNANStd.php:390
-#: Persian_Gravityforms_By_HANNANStd.php:414
+#: Persian_Gravityforms_By_HANNANStd.php:505
+#: Persian_Gravityforms_By_HANNANStd.php:548
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "Payment Gateway"
 msgstr "درگاه پرداخت"
 
-#: Persian_Gravityforms_By_HANNANStd.php:411
+#: Persian_Gravityforms_By_HANNANStd.php:543
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "Payment Information"
 msgstr "اطلاعات پرداخت"
 
-#: Persian_Gravityforms_By_HANNANStd.php:404
-#: Persian_Gravityforms_By_HANNANStd.php:420
+#: Persian_Gravityforms_By_HANNANStd.php:530
+#: Persian_Gravityforms_By_HANNANStd.php:558
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "Payment Status"
 msgstr "وضعیت پرداخت"
@@ -231,130 +76,58 @@ msgstr "وضعیت پرداخت"
 msgid "Persian Gravity Forms"
 msgstr "Gravity Forms فارسی"
 
-#: Persian_Gravityforms_By_HANNANStd.php:461
+#: Persian_Gravityforms_By_HANNANStd.php:660
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "Persian Gravity Forms Dashboard"
 msgstr "آخرین مطالب سایت پشتیبانی Gravity Forms فارسی"
 
-#: Persian_Gravityforms_By_HANNANStd.php:234
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Postal Code"
-msgstr "کد پستی"
-
-#: Persian_Gravityforms_By_HANNANStd.php:222
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Private"
-msgstr "خصوصی"
-
-#: Persian_Gravityforms_By_HANNANStd.php:235
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Province"
-msgstr "استان"
-
-#: Persian_Gravityforms_By_HANNANStd.php:273
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Provinces of Iran"
-msgstr "استانهای ایران"
-
-#: Persian_Gravityforms_By_HANNANStd.php:254
-#: Persian_Gravityforms_By_HANNANStd.php:290
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Qazvin"
-msgstr "قزوین"
-
-#: Persian_Gravityforms_By_HANNANStd.php:255
-#: Persian_Gravityforms_By_HANNANStd.php:291
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Qom"
-msgstr "قم"
-
-#: Persian_Gravityforms_By_HANNANStd.php:251
-#: Persian_Gravityforms_By_HANNANStd.php:287
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Semnan"
-msgstr "سمنان"
-
-#: Persian_Gravityforms_By_HANNANStd.php:310
+#: Persian_Gravityforms_By_HANNANStd.php:413
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "Simple Payment Gateway"
 msgstr "درگاه پرداخت ساده"
 
-#: Persian_Gravityforms_By_HANNANStd.php:311
+#: Persian_Gravityforms_By_HANNANStd.php:414
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "Simple Payment Status"
 msgstr "وضعیت پرداخت ساده"
 
-#: Persian_Gravityforms_By_HANNANStd.php:312
+#: Persian_Gravityforms_By_HANNANStd.php:415
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "Simple Transaction ID"
 msgstr "کد رهگیری ساده"
 
-#: Persian_Gravityforms_By_HANNANStd.php:252
-#: Persian_Gravityforms_By_HANNANStd.php:288
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Sistan and Baluchistan"
-msgstr "سیستان و بلوچستان"
-
-#: Persian_Gravityforms_By_HANNANStd.php:313
+#: Persian_Gravityforms_By_HANNANStd.php:416
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "Styled Payment Gateway"
 msgstr "درگاه پرداخت استایل بندی شده"
 
-#: Persian_Gravityforms_By_HANNANStd.php:316
+#: Persian_Gravityforms_By_HANNANStd.php:419
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "Styled Payment Pack"
 msgstr "پک اطلاعات درگاه پرداخت"
 
-#: Persian_Gravityforms_By_HANNANStd.php:314
+#: Persian_Gravityforms_By_HANNANStd.php:417
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "Styled Payment Status"
 msgstr "وضعیت پرداخت استایل بندی شده"
 
-#: Persian_Gravityforms_By_HANNANStd.php:315
+#: Persian_Gravityforms_By_HANNANStd.php:418
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "Styled Transaction ID"
 msgstr "کد رهگیری استایل بندی شده"
 
-#: Persian_Gravityforms_By_HANNANStd.php:244
-#: Persian_Gravityforms_By_HANNANStd.php:280
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Tehran"
-msgstr "تهران"
-
-#: Persian_Gravityforms_By_HANNANStd.php:227
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Toman"
-msgstr "تومان"
-
-#: Persian_Gravityforms_By_HANNANStd.php:398
-#: Persian_Gravityforms_By_HANNANStd.php:426
+#: Persian_Gravityforms_By_HANNANStd.php:517
+#: Persian_Gravityforms_By_HANNANStd.php:568
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "Transaction ID"
 msgstr "کد رهگیری"
 
-#: Persian_Gravityforms_By_HANNANStd.php:267
-#: Persian_Gravityforms_By_HANNANStd.php:303
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Yazd"
-msgstr "یزد"
-
-#: Persian_Gravityforms_By_HANNANStd.php:250
-#: Persian_Gravityforms_By_HANNANStd.php:286
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Zanjan"
-msgstr "زنجان"
-
-#: Persian_Gravityforms_By_HANNANStd.php:159
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "Yes"
-msgstr "استفاده از تاریخ شمسی"
-
-#: Persian_Gravityforms_By_HANNANStd.php:486
+#: Persian_Gravityforms_By_HANNANStd.php:686
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "<strong>RSS Error</strong>"
 msgstr "در حین دریافت مطالب خطایی رخ داده است ."
 
-#: Persian_Gravityforms_By_HANNANStd.php:491
+#: Persian_Gravityforms_By_HANNANStd.php:691
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "Apparently, There are no updates to show!"
 msgstr "در حال حاضر هیچ مطلبی وجود ندارد ."
@@ -371,49 +144,409 @@ msgstr ""
 msgid "http://www.gravityforms.ir/"
 msgstr ""
 
-#: Persian_Gravityforms_By_HANNANStd.php:655
-#@ gravityforms
+#: Persian_Gravityforms_By_HANNANStd.php:895
+#@ Persian_Gravityforms_By_HANNANStd
 msgid "نمایش زیر نویس فیلد"
 msgstr ""
 
-#: Persian_Gravityforms_By_HANNANStd.php:661
-#@ gravityforms
+#: Persian_Gravityforms_By_HANNANStd.php:901
+#@ Persian_Gravityforms_By_HANNANStd
 msgid "جدا سازی خودکار ارقام توسط خط فاصله"
 msgstr ""
 
-#: Persian_Gravityforms_By_HANNANStd.php:672
-#@ gravityforms
+#: Persian_Gravityforms_By_HANNANStd.php:913
+#@ Persian_Gravityforms_By_HANNANStd
 msgid "مقدار وارد شده شامل کاراکتر غیر عددی باشد"
 msgstr ""
 
-#: Persian_Gravityforms_By_HANNANStd.php:679
-#@ gravityforms
+#: Persian_Gravityforms_By_HANNANStd.php:920
+#@ Persian_Gravityforms_By_HANNANStd
 msgid "تعداد ارقام وارد شده استاندارد نباشد"
 msgstr ""
 
-#: Persian_Gravityforms_By_HANNANStd.php:686
-#@ gravityforms
+#: Persian_Gravityforms_By_HANNANStd.php:927
+#@ Persian_Gravityforms_By_HANNANStd
 msgid "کد ملی وارد شده قبلا ثبت شده باشد"
 msgstr ""
 
-#: Persian_Gravityforms_By_HANNANStd.php:693
-#@ gravityforms
+#: Persian_Gravityforms_By_HANNANStd.php:934
+#@ Persian_Gravityforms_By_HANNANStd
 msgid "کد ملی وارد شده مطابق با الگوی ملی نباشد"
 msgstr ""
 
-#. translators: plugin header field 'Version'
-#: Persian_Gravityforms_By_HANNANStd.php:0
-#@ Persian_Gravityforms_By_HANNANStd
-msgid "1.1.1"
-msgstr ""
-
-#: Persian_Gravityforms_By_HANNANStd.php:317
+#: Persian_Gravityforms_By_HANNANStd.php:420
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "RTL Start"
 msgstr "ابتدای راستچین سازی"
 
-#: Persian_Gravityforms_By_HANNANStd.php:318
+#: Persian_Gravityforms_By_HANNANStd.php:421
 #@ Persian_Gravityforms_By_HANNANStd
 msgid "RTL End"
 msgstr "انتهای راستچین سازی"
+
+#. translators: plugin header field 'Version'
+#: Persian_Gravityforms_By_HANNANStd.php:0
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "1.5.5"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:223
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "فعالسازی تاریخ شمسی"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:309
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "خصوصی"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:313
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "ریال ایران"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:314
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "تومان"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:319
+#: Persian_Gravityforms_By_HANNANStd.php:320
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "ایران"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:321
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "کد پستی"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:322
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "استان"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:324
+#: Persian_Gravityforms_By_HANNANStd.php:361
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "آذربایجان شرقی"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:325
+#: Persian_Gravityforms_By_HANNANStd.php:362
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "آذربایجان غربی"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:326
+#: Persian_Gravityforms_By_HANNANStd.php:363
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "اردبیل"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:327
+#: Persian_Gravityforms_By_HANNANStd.php:364
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "اصفهان"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:328
+#: Persian_Gravityforms_By_HANNANStd.php:365
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "البرز"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:329
+#: Persian_Gravityforms_By_HANNANStd.php:366
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "ایلام"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:330
+#: Persian_Gravityforms_By_HANNANStd.php:367
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "بوشهر"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:331
+#: Persian_Gravityforms_By_HANNANStd.php:368
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "تهران"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:332
+#: Persian_Gravityforms_By_HANNANStd.php:369
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "چهارمحال و بختیاری"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:333
+#: Persian_Gravityforms_By_HANNANStd.php:370
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "خراسان شمالی"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:334
+#: Persian_Gravityforms_By_HANNANStd.php:371
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "خراسان رضوی"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:335
+#: Persian_Gravityforms_By_HANNANStd.php:372
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "خراسان جنوبی"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:336
+#: Persian_Gravityforms_By_HANNANStd.php:373
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "خوزستان"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:337
+#: Persian_Gravityforms_By_HANNANStd.php:374
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "زنجان"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:338
+#: Persian_Gravityforms_By_HANNANStd.php:375
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "سمنان"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:339
+#: Persian_Gravityforms_By_HANNANStd.php:376
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "سیستان و بلوچستان"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:340
+#: Persian_Gravityforms_By_HANNANStd.php:377
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "فارس"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:341
+#: Persian_Gravityforms_By_HANNANStd.php:378
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "قزوين"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:342
+#: Persian_Gravityforms_By_HANNANStd.php:379
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "قم"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:343
+#: Persian_Gravityforms_By_HANNANStd.php:380
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "کردستان"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:344
+#: Persian_Gravityforms_By_HANNANStd.php:381
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "کرمان"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:345
+#: Persian_Gravityforms_By_HANNANStd.php:382
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "کرمانشاه"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:346
+#: Persian_Gravityforms_By_HANNANStd.php:383
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "کهگیلویه و بویراحمد"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:347
+#: Persian_Gravityforms_By_HANNANStd.php:384
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "گلستان"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:348
+#: Persian_Gravityforms_By_HANNANStd.php:385
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "گیلان"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:349
+#: Persian_Gravityforms_By_HANNANStd.php:386
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "لرستان"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:350
+#: Persian_Gravityforms_By_HANNANStd.php:387
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "مازندران"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:351
+#: Persian_Gravityforms_By_HANNANStd.php:388
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "مرکزی"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:352
+#: Persian_Gravityforms_By_HANNANStd.php:389
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "هرمزگان"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:353
+#: Persian_Gravityforms_By_HANNANStd.php:390
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "همدان"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:354
+#: Persian_Gravityforms_By_HANNANStd.php:391
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "یزد"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:360
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "استانهای ایران"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:393
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "ماه های ایران"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:394
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "فروردین"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:395
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "اردیبهشت"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:396
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "خرداد"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:397
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "تیر"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:398
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "مرداد"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:399
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "شهریور"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:400
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "مهر"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:401
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "آبان"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:402
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "آذر"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:403
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "دی"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:404
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "بهمن"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:405
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "اسفند"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:907
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "متن پیغام خطا هنگامی که موارد زیر رخ دهد"
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:1229
+#, php-format
+#@ gravityforms
+msgid "Please enter a valid date in the format (%s)."
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:1229
+#@ gravityforms
+msgid "Please enter a valid date."
+msgstr ""
+
+#: Persian_Gravityforms_By_HANNANStd.php:1286
+#@ default
+msgid "ارسال دستی"
+msgstr ""
+
+#: include/Live_Preview.php:19
+#: include/Live_Preview.php:32
+#@ Persian_Gravityforms_By_HANNANStd
+#@ default
+msgid "پیشنمایش فرم"
+msgstr ""
+
+#: include/Live_Preview.php:20
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "اضافه کردن پیشنمایش فرم در فرانت اند سایت"
+msgstr ""
+
+#: include/Live_Preview.php:61
+#@ default
+msgid "Live Preview"
+msgstr ""
+
+#: include/Live_Preview.php:79
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "برای مشاهده پیشنمایش فرم باید در سایت وارد شوید ."
+msgstr ""
+
+#: include/Live_Preview.php:81
+#@ Persian_Gravityforms_By_HANNANStd
+msgid "متاسفانه شما سطح دسترسی لازم برای مشاهده پیشنمایش فرم را ندارید ."
+msgstr ""
+
+#: include/MultipageNavigation.php:167
+#@ default
+msgid "Back to Last Page"
+msgstr ""
+
+#: include/Pre_Submission.php:131
+#@ gravityforms
+msgid "Click to view"
+msgstr ""
+
+#: include/Restrict_Content.php:6
+#@ default
+msgid "برای مشاهده این محتوا باید فرم زیر را پر نمایید :"
+msgstr ""
+
+#: include/Restrict_Content.php:7
+#@ default
+msgid "برای پر کردن فرم کلیک کنید ."
+msgstr ""
 

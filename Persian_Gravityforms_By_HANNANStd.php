@@ -2,19 +2,29 @@
 /*
 Plugin Name: Persian Gravity Forms
 Plugin URI: https://wordpress.org/plugins/persian-gravity-forms/
-Description: Gravity Forms for Iranian 
-Version: 1.5.0
-Requires at least: 3.5
+Description: Gravity Forms for Iranian
+Version: 1.6.0
+Requires at least: 3.8
 Author: HANNAN Ebrahimi Setoode
 Author URI: http://www.gravityforms.ir/
 Text Domain: Persian_Gravityforms_By_HANNANStd
 Domain Path: /languages/
 License: GPL 2
 */
-require_once("include/wp-session.php");
 require_once("include/Live_Preview.php");
 if(class_exists("GIRLivePreview"))
-	new GIRLivePreview();
+	new GIRLivePreview( array( 'title' => true, 'description' => true,'ajax' => true) );
+
+require_once("include/Snippets.php");
+if(class_exists("GF_IR_PostPermalink"))
+	new GF_IR_PostPermalink();
+
+require_once("include/Pre_Submission.php");
+if(class_exists("GFIR_PreSubmission"))
+	GFIR_PreSubmission::init();
+
+require_once("include/MultipageNavigation.php");
+require_once("include/wp-session.php");
 class GravityFormsPersian {
 	private $file;
 	private $language;
@@ -53,7 +63,9 @@ class GravityFormsPersian {
 		add_filter('gform_field_validation', array( $this, 'Input_Valid_Checker_By_HANNANStd'), 10, 4);		
 		add_filter('gform_noconflict_styles', array( $this, 'Register_Style_to_No_Conflict_By_HANNANStd'));	
 		add_filter('gform_noconflict_scripts', array( $this, 'Register_Script_to_No_Conflict_By_HANNANStd'));
+		add_filter( 'gform_notification_events', array( $this, 'Add_Manual_Notification_Event') );
 	}
+	
     public function Activated_Plugin_By_HANNANStd() {
 		$path = str_replace( WP_PLUGIN_DIR . '/', '', $this->file );
 		if ( $plugins = get_option( 'active_plugins' ) ) {
@@ -611,7 +623,7 @@ class GravityFormsPersian {
 		$_SERVER['REQUEST_URI'] == '/wp-admin/' || $_SERVER['REQUEST_URI'] == '/wp-admin' || 
 		$_SERVER['REQUEST_URI'] == '/wp-admin/index.php' || $_SERVER['REQUEST_URI'] == '/wp-admin/index.php/')) 
 		{
-			wp_enqueue_style('Persian_GravityForms', plugins_url ( '/assets/css/persiangravity.css', __FILE__, null, GFCommon::$version ) );
+			wp_enqueue_style('Persian_GravityForms', plugins_url ( '/assets/css/admin-style.css', __FILE__, null, GFCommon::$version ) );
 			wp_print_styles('gform_tooltip','Persian_GravityForms' );
 			wp_dequeue_script('jquery-ui-datepicker');
 			wp_dequeue_script(array("jquery-ui-datepicker"));
@@ -619,6 +631,12 @@ class GravityFormsPersian {
 			wp_deregister_script(array("jquery-ui-datepicker"));
 			wp_deregister_script('gform_datepicker_init');
 			wp_enqueue_script('gform_datepicker_init', plugins_url ( '/assets/js/wp-admin-datepicker.js', __FILE__), array( 'jquery', 'jquery-ui-core' ), true );
+			echo '<style type="text/css">
+					.mt-gform_notification_message,
+					.mt-form_confirmation_message {
+						margin-right: -30px !important;
+					}
+			</style>';
 		}
     }
 	public function Register_Script_to_No_Conflict_By_HANNANStd($scripts){
@@ -772,7 +790,7 @@ class GravityFormsPersian {
 		return plugins_url( '', __FILE__ );
 	}
 	public function version(){
-		return '1.5.0';
+		return '1.6.0';
 	}
 	public function Add_HANNANStd_Field_By_HANNANStd( $field_groups ) {
 		foreach( $field_groups as &$group ){
@@ -1257,6 +1275,11 @@ class GravityFormsPersian {
 		}
 		//else return result
 		return $result;
+	}
+	
+	public function Add_Manual_Notification_Event( $events ) {
+		$events['manual'] = __( 'ارسال دستی' );
+		return $events;
 	}
 }
 global $Persian_Gravityforms_By_HANNANStd_plugin;
