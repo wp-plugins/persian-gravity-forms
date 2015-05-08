@@ -1,5 +1,5 @@
 <?php
-class GIRLivePreview {
+class GFIRLivePreview {
     var $post_type = 'gf_live_preview';
     function __construct( $args = array() ) {
         if( ! property_exists( 'GFCommon', 'version' ) || ! version_compare( GFCommon::$version, '1.8', '>=' ) )
@@ -8,7 +8,7 @@ class GIRLivePreview {
     		'id' => 0,
     		'title' => true,
     		'description' => true,
-    		'ajax' => false
+    		'ajax' => true
     	) );
     	add_action( 'init', array( $this, 'register_preview_post_type' ) );
     	add_action( 'wp', array( $this, 'maybe_load_preview_functionality' ) );
@@ -99,3 +99,4 @@ class GIRLivePreview {
 		return is_post_type_archive( $this->post_type );
     }
 }
+new GFIRLivePreview( array( 'title' => true, 'description' => true,'ajax' => true) );

@@ -3,7 +3,7 @@
 Plugin Name: Persian Gravity Forms
 Plugin URI: https://wordpress.org/plugins/persian-gravity-forms/
 Description: Gravity Forms for Iranian
-Version: 1.6.0
+Version: 1.7.0
 Requires at least: 3.8
 Author: HANNAN Ebrahimi Setoode
 Author URI: http://www.gravityforms.ir/
@@ -11,19 +11,24 @@ Text Domain: Persian_Gravityforms_By_HANNANStd
 Domain Path: /languages/
 License: GPL 2
 */
-require_once("include/Live_Preview.php");
-if(class_exists("GIRLivePreview"))
-	new GIRLivePreview( array( 'title' => true, 'description' => true,'ajax' => true) );
+add_action('plugins_loaded', 'Load_Live_Preview', 0);
+function Load_Live_Preview() {
+	require_once("include/Live_Preview.php");
+}
 
-require_once("include/Snippets.php");
-if(class_exists("GF_IR_PostPermalink"))
-	new GF_IR_PostPermalink();
+require_once("include/News_Letter.php");
+if(class_exists("GFIR_NewsLetter"))
+	new GFIR_NewsLetter();
 
 require_once("include/Pre_Submission.php");
 if(class_exists("GFIR_PreSubmission"))
 	GFIR_PreSubmission::init();
 
-require_once("include/MultipageNavigation.php");
+require_once("include/Snippets.php");
+if(class_exists("GFIR_PostPermalink"))
+	new GFIR_PostPermalink();
+
+require_once("include/Multipage_Navigation.php");
 require_once("include/wp-session.php");
 class GravityFormsPersian {
 	private $file;
@@ -63,7 +68,6 @@ class GravityFormsPersian {
 		add_filter('gform_field_validation', array( $this, 'Input_Valid_Checker_By_HANNANStd'), 10, 4);		
 		add_filter('gform_noconflict_styles', array( $this, 'Register_Style_to_No_Conflict_By_HANNANStd'));	
 		add_filter('gform_noconflict_scripts', array( $this, 'Register_Script_to_No_Conflict_By_HANNANStd'));
-		add_filter( 'gform_notification_events', array( $this, 'Add_Manual_Notification_Event') );
 	}
 	
     public function Activated_Plugin_By_HANNANStd() {
@@ -790,7 +794,7 @@ class GravityFormsPersian {
 		return plugins_url( '', __FILE__ );
 	}
 	public function version(){
-		return '1.6.0';
+		return '1.7.0';
 	}
 	public function Add_HANNANStd_Field_By_HANNANStd( $field_groups ) {
 		foreach( $field_groups as &$group ){
@@ -1276,11 +1280,7 @@ class GravityFormsPersian {
 		//else return result
 		return $result;
 	}
-	
-	public function Add_Manual_Notification_Event( $events ) {
-		$events['manual'] = __( 'ارسال دستی' );
-		return $events;
-	}
+
 }
 global $Persian_Gravityforms_By_HANNANStd_plugin;
 $Persian_Gravityforms_By_HANNANStd_plugin = new GravityFormsPersian( __FILE__ );
