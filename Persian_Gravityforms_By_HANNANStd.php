@@ -3,7 +3,7 @@
 Plugin Name: Persian Gravity Forms
 Plugin URI: https://wordpress.org/plugins/persian-gravity-forms/
 Description: Gravity Forms for Iranian
-Version: 1.7.2
+Version: 1.7.3
 Requires at least: 3.8
 Author: HANNAN Ebrahimi Setoode
 Author URI: http://www.gravityforms.ir/
@@ -632,7 +632,7 @@ class GravityFormsPersian {
 		$_SERVER['REQUEST_URI'] == '/wp-admin/' || $_SERVER['REQUEST_URI'] == '/wp-admin' || 
 		$_SERVER['REQUEST_URI'] == '/wp-admin/index.php' || $_SERVER['REQUEST_URI'] == '/wp-admin/index.php/')) 
 		{
-			wp_enqueue_style('Persian_GravityForms', plugins_url ( '/assets/css/admin-style.css', __FILE__, null, GFCommon::$version ) );
+			wp_enqueue_style('Persian_GravityForms', plugins_url ( '/assets/css/admin-styles.css', __FILE__, null, GFCommon::$version ) );
 			wp_print_styles('gform_tooltip','Persian_GravityForms' );
 			wp_dequeue_script('jquery-ui-datepicker');
 			wp_dequeue_script(array("jquery-ui-datepicker"));
@@ -799,7 +799,7 @@ class GravityFormsPersian {
 		return plugins_url( '', __FILE__ );
 	}
 	public function version(){
-		return '1.7.2';
+		return '1.7.3';
 	}
 	public function Add_HANNANStd_Field_By_HANNANStd( $field_groups ) {
 		foreach( $field_groups as &$group ){

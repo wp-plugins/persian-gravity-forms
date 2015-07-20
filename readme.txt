@@ -4,7 +4,7 @@ Tags: gravityforms,gravity forms,persian gravity forms,persian gravityforms,grav
 Donate link: http://www.webforest.ir
 Requires at least: 3.8
 Tested up to: 4.2
-Stable tag: 1.7.2
+Stable tag: 1.7.3
 License: GPL 2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 This WordPress plugin extends the Gravity Forms plugin and its addons with the Persian language .
@@ -84,6 +84,8 @@ You can read complete documentations on the [GravityForms.ir](http://www.Gravity
 19. Iranian National Code field Advanced setting
 
 == Changelog ==
+= 1.7.3 =
+* update translation file
 = 1.7.2 =
 * update translation file
 = 1.7.1 =
@@ -152,6 +154,8 @@ You can read complete documentations on the [GravityForms.ir](http://www.Gravity
 * First version
 
 == Upgrade Notice ==
+= 1.7.3 =
+* update translation file
 = 1.7.2 =
 * update translation file
 = 1.7.1 =
