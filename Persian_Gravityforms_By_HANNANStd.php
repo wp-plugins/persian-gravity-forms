@@ -3,7 +3,7 @@
 Plugin Name: Persian Gravity Forms
 Plugin URI: https://wordpress.org/plugins/persian-gravity-forms/
 Description: Gravity Forms for Iranian
-Version: 1.7.4
+Version: 1.7.5
 Requires at least: 3.8
 Author: HANNAN Ebrahimi Setoode
 Author URI: http://www.gravityforms.ir/
@@ -52,7 +52,7 @@ class GravityFormsPersian {
 		add_action('gform_field_advanced_settings', array( $this, 'Add_Melli_Cart_Field_Setting_By_HANNANStd'), 10, 2);
 		add_action('gform_entries_first_column', array($this ,'First_Column_Actions_By_HANNANStd'), 10, 5);	
 		add_action('gform_entry_post_save', array($this ,'Update_Lead_No_Gateway_By_HANNANStd'), 10, 2);
-		add_action( 'gform_pre_submission', array( $this, 'Mellicart_Pre_Submission_By_HANNANStd' ) );
+		add_action('gform_pre_submission', array( $this, 'Mellicart_Pre_Submission_By_HANNANStd' ) );
 		
 		//filters
 		add_filter('update_footer', array( $this, 'GravityForms_Footer_Left_By_HANNANStd'), 11); 
@@ -810,7 +810,7 @@ class GravityFormsPersian {
 		return plugins_url( '', __FILE__ );
 	}
 	public function version(){
-		return '1.7.4';
+		return '1.7.5';
 	}
 	public function Add_HANNANStd_Field_By_HANNANStd( $field_groups ) {
 		foreach( $field_groups as &$group ){
@@ -902,9 +902,10 @@ class GravityFormsPersian {
 			if ( !empty( $input_value ) ) {
 				if (strlen($input_value) == 8 )
 					$_POST[ "input_{$field['id']}" ] = '00'.$input_value;
-				if (strlen($input_value) == 9 )
-					$_POST[ "input_{$field['id']}" ] = '0'.$input_value;			
-				$_POST[ "input_{$field['id']}" ] = $input_value;
+				elseif (strlen($input_value) == 9 )
+					$_POST[ "input_{$field['id']}" ] = '0'.$input_value;	
+				else
+					$_POST[ "input_{$field['id']}" ] = $input_value;
 			}
 		}
 	}
@@ -1275,6 +1276,7 @@ class GravityFormsPersian {
 					$result["message"] = $pm1;
 				else 
 					$result["message"] = "کد ملی فقط باید به صورت عدد وارد شود . ";
+				return $result;
 			}		
 			if (self::Add_Melli_Cart_PHP_Checker_By_HANNANStd($value,$setting) == 3)
 			{
@@ -1283,6 +1285,7 @@ class GravityFormsPersian {
 					$result["message"] = $pm2;
 				else 
 					$result["message"] = 'کد ملی می بایست 10 رقمی باشد . تنها در صورتی مجاز به استفاده از کد های 8 یا 9 رقمی هستید که ارقام سمت چپ 0 باشند . ';
+				return $result;
 			}
 			if (self::Add_Melli_Cart_PHP_Checker_By_HANNANStd($value,$setting) == 2) 
 			{
@@ -1291,17 +1294,19 @@ class GravityFormsPersian {
 					$result["message"] = $pm4;
 				else 
 					$result["message"] = 'کد ملی وارد شده مطابق با استانداردهای کشور نمی باشد .';
+				return $result;
 			}
-			if ($field["noDuplicates"] && RGFormsModel::is_duplicate($form["id"], $field, $value))
+			if ($field["noDuplicates"] && ( RGFormsModel::is_duplicate($form["id"], $field, $value) || RGFormsModel::is_duplicate($form["id"], $field, '0'.$value) || RGFormsModel::is_duplicate($form["id"], $field, '00'.$value ) ))
 			{
 				$result["is_valid"] = false;
 				if ($pm3)
 					$result["message"] = $pm3;
 				else 
 					$result["message"] = 'این کد ملی توسط فرد دیگری ثبت شده است .';
-			}		
+				return $result;
+			}
 		}
-		//else return result
+		
 		return $result;
 	}
 
