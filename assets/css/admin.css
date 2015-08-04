@@ -81,4 +81,5 @@ margin: 0 69px 0 99px !important;
 .ui-tabs .ui-tabs-nav li {
 margin-left: 0.2em !important;
 margin-right: 0 !important;
+float: right !important;
 }

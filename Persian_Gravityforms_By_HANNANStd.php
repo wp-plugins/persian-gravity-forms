@@ -3,7 +3,7 @@
 Plugin Name: Persian Gravity Forms
 Plugin URI: https://wordpress.org/plugins/persian-gravity-forms/
 Description: Gravity Forms for Iranian
-Version: 1.7.3
+Version: 1.7.4
 Requires at least: 3.8
 Author: HANNAN Ebrahimi Setoode
 Author URI: http://www.gravityforms.ir/
@@ -52,6 +52,8 @@ class GravityFormsPersian {
 		add_action('gform_field_advanced_settings', array( $this, 'Add_Melli_Cart_Field_Setting_By_HANNANStd'), 10, 2);
 		add_action('gform_entries_first_column', array($this ,'First_Column_Actions_By_HANNANStd'), 10, 5);	
 		add_action('gform_entry_post_save', array($this ,'Update_Lead_No_Gateway_By_HANNANStd'), 10, 2);
+		add_action( 'gform_pre_submission', array( $this, 'Mellicart_Pre_Submission_By_HANNANStd' ) );
+		
 		//filters
 		add_filter('update_footer', array( $this, 'GravityForms_Footer_Left_By_HANNANStd'), 11); 
 		add_filter('load_textdomain_mofile', array( $this, 'Load_Textdomain_Mo_File_By_HANNANStd'), 10, 2 );
@@ -88,6 +90,16 @@ class GravityFormsPersian {
 		}
 	}
 	public function init(){
+		if ( get_option( 'gform_pending_installation' ) ) {
+			update_option( 'gform_pending_installation', false );
+			$current_version = get_option( 'rg_form_version' );
+			if ( $current_version === false ){
+				if(class_exists("GFCommon"))			
+					update_option( 'rg_form_version', GFCommon::$version );
+				else
+					update_option( 'rg_form_version', '1.9.0' );
+			}
+		}
         require_once("include/Jalali.php");
         require_once("include/Post_Content_Merge_Tags.php");
 		$rel_path = dirname( plugin_basename( $this->file ) ) . '/languages/';
@@ -243,7 +255,7 @@ class GravityFormsPersian {
     ?>
 		<script type='text/javascript'>
 			fieldSettings["date"] += ", .Jalali_setting";
-			fieldSettings["mellicart"] = ".conditional_logic_field_setting, .label_setting, .admin_label_setting, .size_setting, .rules_setting, .visibility_setting, .duplicate_setting, .default_value_setting, .description_setting, .css_class_setting, .mellicart_setting";
+			fieldSettings["mellicart"] = ".placeholder_setting, .label_placement_setting, .prepopulate_field_setting, .conditional_logic_field_setting, .label_setting, .admin_label_setting, .size_setting, .rules_setting, .visibility_setting, .duplicate_setting, .default_value_setting, .description_setting, .css_class_setting, .mellicart_setting";
 			//fieldSettings["keyboard"] = ".label_setting, .keyboard_setting";
 			jQuery(document).bind("gform_load_field_settings", function(event, field, form){
 				jQuery("#check_jalali").attr("checked", field["check_jalali"] == true);
@@ -470,11 +482,12 @@ class GravityFormsPersian {
 		$wp_session['refid'] = $form["id"].$lead["id"];
 		@session_start();
 		$_SESSION["refid"] = $form["id"].$lead["id"];
-		RGFormsModel::update_lead($lead);
+		GFAPI::update_entry($lead);
 		return $lead;
 	}
 	public function GformReplaceMergeTags_By_HANNANStd($text, $form, $lead, $url_encode, $esc_html, $nl2br, $format){
 		$gateway = gform_get_meta($lead['id'], 'payment_gateway');
+		$payment_status = '';
 		if ($lead['payment_status']=="Active" || $lead['payment_status']=="Paid")
 			$payment_status = __("Paid", "Persian_Gravityforms_By_HANNANStd");
 		if ($lead['payment_status']=="Failed")
@@ -628,11 +641,8 @@ class GravityFormsPersian {
 			$is_gravityforms_page = (substr($_GET['page'],0,12) == 'gravityforms') ? 1 : 0;
 		else
 			$is_gravityforms_page = 0;
-		if (is_rtl() && ($page_prefix[0]=="gf" || RGForms::is_gravity_page() || $is_gravityforms_page == 1 || 
-		$_SERVER['REQUEST_URI'] == '/wp-admin/' || $_SERVER['REQUEST_URI'] == '/wp-admin' || 
-		$_SERVER['REQUEST_URI'] == '/wp-admin/index.php' || $_SERVER['REQUEST_URI'] == '/wp-admin/index.php/')) 
-		{
-			wp_enqueue_style('Persian_GravityForms', plugins_url ( '/assets/css/admin-styles.css', __FILE__, null, GFCommon::$version ) );
+		if ( is_rtl() && ($page_prefix[0]=="gf" || RGForms::is_gravity_page() || $is_gravityforms_page == 1 )) {
+			wp_enqueue_style('Persian_GravityForms', plugins_url ( '/assets/css/admin.css', __FILE__, null, GFCommon::$version ) );
 			wp_print_styles('gform_tooltip','Persian_GravityForms' );
 			wp_dequeue_script('jquery-ui-datepicker');
 			wp_dequeue_script(array("jquery-ui-datepicker"));
@@ -729,6 +739,7 @@ class GravityFormsPersian {
         $product_index = 1;
         $total = 0;
         $discount = 0;
+		$price = 0;
         foreach($products["products"] as $product){
             $option_fields = "";
             $price = GFCommon::to_number($product["price"]);
@@ -799,7 +810,7 @@ class GravityFormsPersian {
 		return plugins_url( '', __FILE__ );
 	}
 	public function version(){
-		return '1.7.3';
+		return '1.7.4';
 	}
 	public function Add_HANNANStd_Field_By_HANNANStd( $field_groups ) {
 		foreach( $field_groups as &$group ){
@@ -855,20 +866,19 @@ class GravityFormsPersian {
 			{
 				$lead = RGFormsModel::get_lead($lead_id);
 				$post_id = $lead["post_id"];
-				$post_link = "";
-				if(is_numeric($post_id) && GFCommon::is_post_field($field))
-				{
-					$post_link = "You can <a href='post.php?action=edit&post=$post_id'>edit this post</a> from the post page.";
-				}
-				$currency = $lead["currency"];
+				
 			}
+			
+			$placeholder_attribute = GFCommon::get_field_placeholder_attribute( $field );
 			$max_length = "";
 			$html5_attributes = "";
 			if(empty($html_input_type))
 				$html_input_type = "text";
 			$max_length = "maxlength=10";
 			$tabindex = GFCommon::get_tabindex();
-			return sprintf("<div class='ginput_container'><input onblur='MelliCard_Checker_Javascript_By_HANNANStd_%d(this);' name='input_%d' id='%s' type='%s' value='%s' class='melli_cart %s' $max_length $tabindex $html5_attributes %s/></div><p class='city mellicart' id='city_%d'></p>", $id, $id, $field_id, $html_input_type, esc_attr($value), esc_attr($class), $disabled_text,	$id);
+			return sprintf("<div class='ginput_container'>
+			<input onblur='MelliCard_Checker_Javascript_By_HANNANStd_%d(this);' name='input_%d' id='%s' type='%s' value='%s' class='melli_cart %s' $placeholder_attribute $max_length $tabindex $html5_attributes %s/>
+			</div><p class='city mellicart' id='city_%d'></p>", $id, $id, $field_id, $html_input_type, esc_attr($value), esc_attr($class), $disabled_text,	$id);
 		}
 		if ( $field["type"] == "keyboard" ) {		
 			$id = $field["id"];
@@ -879,15 +889,24 @@ class GravityFormsPersian {
 			{
 				$lead = RGFormsModel::get_lead($lead_id);
 				$post_id = $lead["post_id"];
-				$post_link = "";
-				if(is_numeric($post_id) && GFCommon::is_post_field($field))
-				{
-					$post_link = "You can <a href='post.php?action=edit&post=$post_id'>edit this post</a> from the post page.";
-				}
 			}
 			return sprintf("<input name='input_%d' id='%s' type='hidden' value=''/>", $id, $id);
 		}
-	return $input;
+		return $input;
+	}
+	public function Mellicart_Pre_Submission_By_HANNANStd( $form ) {
+		$mellicart_fields = GFCommon::get_fields_by_type( $form, array( 'mellicart' ) );
+		foreach ( (array) $mellicart_fields as $field ) {
+			$input_name = "input_{$field['id']}";
+			$input_value   = ! rgempty( $input_name ) ? rgpost( $input_name ) : "";
+			if ( !empty( $input_value ) ) {
+				if (strlen($input_value) == 8 )
+					$_POST[ "input_{$field['id']}" ] = '00'.$input_value;
+				if (strlen($input_value) == 9 )
+					$_POST[ "input_{$field['id']}" ] = '0'.$input_value;			
+				$_POST[ "input_{$field['id']}" ] = $input_value;
+			}
+		}
 	}
 	public function Add_Melli_Cart_Field_Setting_By_HANNANStd( $position, $form_id ){
 		if( $position == 50 ){
